@@ -16,7 +16,7 @@ void main(void)
         int M7=0;
         int M8=0;
         int M9=0;
-        int J7=l;
+        int J7=1;
         int J6=0;
         int JXNIN,JXNJJN,JEM;
         int i,ii,JJJJ,JJJ1,jjj;
@@ -158,12 +158,12 @@ void main(void)
                 fprintf(filo,"\n NA[%d-%d]=%d",M1,KN,N8);
         }
         
-        for (ii = 2 ; ii<=NZ ; + + ii)
+        for (ii=2 ;ii<=NZ ;++ii)
         {//------------------------------------- i i
         JJJJ=ii-l7;
         for(jj=l;jj<=JJJJ;++jj){
         JXNIN=JF[ii];
-        JXNJJN=JF[j j];
+        JXNJJN=JF[jj];
         if(abs(JXNIN)>=abs(JXNJJN)){
         continue;
         }else{
@@ -175,22 +175,22 @@ void main(void)
         JF[jj]=JEM;
         }
         break;
-        > / / -------------- j j
-        } / / --------------------------------- H
+        } // -------------- j j
+        } // --------------------------------- H
         LNUM=LNUM+1 ;
         M[LNUM]=NEL + 1 ;
         fprintf(filo,"\n M[%d]=%d",LNUM,NEL+1) ;
         for(jj=l;jj<=NZ;+ + jj) {
         NEL=NEL+1;
         fprintf(filo,"\n NEL=%dn,NEL) ;
-        M P L [NEL]=JF [ j j] ;
+        MPL[NEL]=JF[jj] ;
         fprintf(filo,"\nMPL[%d]=%d",NEL,M P L [NEL]);
         printf ("\n-------- f l a g ----------- =%d",ERR);
         scanf("%d",&ERR);
         } / / -------------------------------------- » j j
         NZ=0;
         if(J7==2){goto Again;}
-        i f (J7==l){
+        if (J7==l){
         continue;
         }
         Gof:
@@ -204,10 +204,10 @@ void main(void)
         if(JE[J8] l=l){
         L9=L9+1;
         IX[L9]=J8;
-        J E [J8]=1;
-        J G [J8]=N8 ;
+        JE[J8]=1;
+        JG[J8]=N8 ;
         if(abs(J8-JB[N8]) J =0){
-        J G [J8]= -N8;
+        JG[J8]= -N8;
         }
         }
         } / / ------------- J
@@ -215,9 +215,9 @@ void main(void)
         »*
         Again :
         M9 = 0 ;
-        for(j =1;j<=KN;+ +j){ //------------------------------- > J
+        for(j=1;j<=KN;++j){ //------------------------------- > J
         M7 = 0 ;
-        N P = M [j +1]-M [ j] ;
+        NP = M[j+1]-M[j] ;
         printf("\n NP=%d",NP);
         for (k=l; k<=NP; ++k) {//--------------------------- >K
         M8 = IP[j] [k] ;
@@ -247,7 +247,7 @@ void main(void)
         IX[k]=0;
         J E [k]=0;
         } //
-        >d
+        }d
         J6=JA [I] ;
         J8=JB[I];
         J7=2 ;
