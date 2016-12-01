@@ -22,40 +22,40 @@ void main(void)
         int i,ii,JJJJ,JJJ1,jjj;
         int ERR=0;
         char fnaml[20] , fnam2[20] ;
-        / * =================================================================3==========*/
-        
+        /* ============================================================================*/
+
         printf("Give file name for input\r\n");
         scanf("%s",fnaml);
-        
+
         if((fili=fopen(fnaml,"r+"))==NULL)
         {
                 printf("Cannot open input f. %s",fnaml);
                 exit(0);
         }
-        
+
         printf("Give file name for output\r\n");
         scanf("%s",fnam2);
-        
-        if((filo=fopen(fnam2,"at"))==NULL) 
+
+        if((filo=fopen(fnam2,"at"))==NULL)
         {
                 printf("Cannot open output f. %s",fnam2);
                 exit(0);
         }
         /**/
-        
-        fscanf{fili,"%d %d %d %d %d %d %d",KN,KP,NEL,KJ,KK,NTEP,LNUM);
+
+        fscanf(fili,"%d %d %d %d %d %d %d",KN,KP,NEL,KJ,KK,NTEP,LNUM);
         fscanf(fili,"%d %d %d",JPIN,NZX,NXX);
-               
+
         for(j=1;j<=KK;++j)
         {
                 fscanf(fili,"%d %d %d",JA[j],JB[j],JD[j]);
         }
-               
+
         for(j=l;j<=KN+l;++j)
         {
                 fscanf(fili,"%d",M[j]);
         }
-               
+
         for(j=l;j<=KN;++j)
         {
                 for(i=l;i<=3;++i)
@@ -63,15 +63,16 @@ void main(void)
                         fscanf(fili,"%d",IP[j][i]);
                 }
         }
-        
+
         KL=KP-NTEP+1;
+
         /*call function */
-               
         combine4(MPL,M,NA,NB);
+
         JD[JPIN]=1;
         M1=KN;
         J8=JA[JPIN] + JB[JPIN];
-               
+
         if(JA[JPIN]>JB[JPIN])
         {
                 JG[J8] =-JPIN;
@@ -81,211 +82,259 @@ void main(void)
                 JG[J8]=JPIN;
         }
         Age:
-        i
-        JE [J8] =1;
-        1.9 = 1 ;
-        IX [1]=J8;
-        /*
-        */
-        for(k=l;k<=KN;++k)
+        ;
+
+        JE[J8]=1;
+        L9 = 1 ;
+        IX[1]=J8;
+        /*-----------------------------------------------------------------        */
+
+        for(k=1;k<=KN;++k)
         {
-        NZ = 0 ;
-        L8=IX[k];
-        if(J7!=2 && L8==0)
+            NZ = 0 ;
+            L8=IX[k];
+
+            if(J7!=2 && L8==0)
+            {
+                fprintf(filo,"\n this system is disconnected");
+                NXX=1;
+            }
+
+            if(J7!=2 && L8==0)
+            {
+                break;
+            }
+
+            NP=M[L8+1]-M[L8];
+
+        for(j=1;j<=NP;++j)
         {
-        fprintf(filo,"\n this system is disconnected");
-        NXX=1;
-        }
-                
-        if(J7o=2 && L8==0)
-        {
-        break;
-        }
-        NP=M[L8+1]-M[L8];
-                
-        for(j=l;j<=NP;++j)
-        {
-        N8=IP[L8] [j] ;
-        N8=abs(N8);
-        
-                if(JA[N8]1=L8 && JB[N8]I=L8)
-        {
-        continue;
-        }
-        else
-        {
-        J8=JA[N8]+JB[N8]-L8;
-        }
-        
-                if (JD[N8]= = 1) 
-        {
+            N8=IP[L8][j] ;
+            N8=abs(N8);
+
+            if(JA[N8]!=L8 && JB[N8]!=L8)
+            {
                 continue;
-        }
-        
-                if(abs(J8-J6)>0)
-        {
+            }
+            else
+            {
+                J8=JA[N8]+JB[N8]-L8;
+            }
+
+            if (JD[N8]== 1)
+            {
+                continue;
+            }
+
+            if(abs(J8-J6)>0)
+            {
                 goto Rod;
+            }
+            NZ+=1;
+            M1+=1;
+
+            if((M1-KN)<=NTEP)
+            {
+                NB[M1-KN]=N8;
+            }
+
+            JF[NZ]=N8;
+
+            if(J7!=2)
+            {
+                    JD[N8]=1;
+            }
+
+            if(JA[N8]!=L8)
+            {
+                    JF[NZ]=-N8;
+            }
+            Fog:
+            }
+            J8=JA[N8]+JB[N8]-J8;
+
+            if(J8!=J6)
+            {
+                    goto Gof;
+            }
+
+            if((M1-KN)<=NTEP)
+            {
+                    NA[M1-KN]=N8;
+                    fprintf(filo,"\n NA[%d-%d]=%d",M1,KN,N8);
+            }
+
+            for (ii=2 ;ii<=NZ ;++ii)
+            {//------------------------------------- i i
+                JJJJ=ii-1;
+
+                for(jj=l;jj<=JJJJ;++jj)
+                {
+                    JXNIN=JF[ii];
+                    JXNJJN=JF[jj];
+
+                    if(abs(JXNIN)>=abs(JXNJJN))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        JJJl=jj+1;
+                        JEM=JF[ii];
+
+                        for(jjj=JJJl;jjj<=ii;++jjj)
+                        {
+                            JF[ii+JJJl-jjj]=JF[ii+JJJl-jjj-1] ;
+                        }
+                        JF[jj]=JEM;
+                    }
+                    break;
+                } // -------------- j j
+            } // --------------------------------- H
         }
-        NZ=NZ+1;
-        M1=M1+1;
-        
-        if((Ml-KN)<=NTEP)
-        {
-                NB[Ml-KN]=N8;
-        }
-        JF [NZ] =N8;
-                
-        if(J7I=2)
-        {
-                JD[N8]=1;
-        }
-        
-        if(JA[N8]!=L8)
-        {
-                JF[NZ]=-N8;
-        }
-        Fog:
-        }
-        J8=JA[N8] + JB[N8] -J8;
-        if(J8I=J6)
-        {
-                goto Gof;
-        }
-        
-        if((Ml-KN)<=NTEP)
-        {
-                NA[Ml-KN]=N8;
-                fprintf(filo,"\n NA[%d-%d]=%d",M1,KN,N8);
-        }
-        
-        for (ii=2 ;ii<=NZ ;++ii)
-        {//------------------------------------- i i
-        JJJJ=ii-l7;
-        for(jj=l;jj<=JJJJ;++jj){
-        JXNIN=JF[ii];
-        JXNJJN=JF[jj];
-        if(abs(JXNIN)>=abs(JXNJJN)){
-        continue;
-        }else{
-        JJJl=jj+1;
-        JEM=JF[ii];
-        for(jjj=JJJl;jjj<=ii;++jjj){
-        JF[ii+JJJl-jjj]=JF[ii+JJJl-jjj-1] ;
-        }
-        JF[jj]=JEM;
-        }
-        break;
-        } // -------------- j j
-        } // --------------------------------- H
         LNUM=LNUM+1;
         M[LNUM]=NEL+1;
+
         fprintf(filo,"\n M[%d]=%d",LNUM,NEL+1);
-        for(jj=l;jj<=NZ;++jj) {
-        NEL=NEL+1;
-        fprintf(filo,"\n NEL=%dn",NEL);
-        MPL[NEL]=JF[jj];
-        fprintf(filo,"\nMPL[%d]=%d",NEL,MPL[NEL]);
-        printf ("\n-------- flag ----------- =%d",ERR);
-        scanf("%d",&ERR);
+
+        for(jj=l;jj<=NZ;++jj)
+        {
+            NEL=NEL+1;
+            fprintf(filo,"\n NEL=%dn",NEL);
+
+            MPL[NEL]=JF[jj];
+            fprintf(filo,"\nMPL[%d]=%d",NEL,MPL[NEL]);
+            printf ("\n-------- flag ----------- =%d",ERR);
+            scanf("%d",&ERR);
         } // -------------------------------------- » j j
+
         NZ=0;
-        if(J7==2){goto Again;}
-        if (J7==l){
-        continue;
+
+        if(J7==2)
+        {
+            goto Again;
+        }
+        if (J7==1)
+        {
+            continue;
         }
         Gof:
-        7
+        ;
+
         N8=abs(JG[J8]);
         NZ=NZ+1;
-        JF [NZ]=JG[J8];
+        JF[NZ]=JG[J8];
         goto Fog;
         Rod:
-        7
-        if(JE[J8] l=l){
-        L9=L9+1;
-        IX[L9]=J8;
-        JE[J8]=1;
-        JG[J8]=N8 ;
-        if(abs(J8-JB[N8]) J =0){
-        JG[J8]= -N8;
+        ;
+        if(JE[J8]!=1)
+        {
+            L9=L9+1;
+            IX[L9]=J8;
+            JE[J8]=1;
+            JG[J8]=N8 ;
+                if(abs(J8-JB[N8])!=0)
+                {
+                JG[J8]=-N8;
+                }
         }
-        }
-        } / / ------------- J
-        } //
-        »*
+        //} // ------------- J
+        //} //
+        //»*
         Again :
-        M9 = 0 ;
-        for(j=1;j<=KN;++j){ //------------------------------- > J
-        M7 = 0;
-        NP = M[j+1]-M[j];
-        printf("\n NP=%d",NP);
-        for (k=l; k<=NP; ++k) {//--------------------------- >K
-        M8 = IP[j][k];
-        M8=abs(M8);
-        if ( JA[M8]!=j Sc Sc JB [M8] ! = j ) {
-        continue;
+        M9 = 0;
+        for(j=1;j<=KN;++j)
+        { //------------------------------- > J
+            M7 = 0;
+            NP = M[j+1]-M[j];
+            printf("\n NP=%d",NP);
+            for (k=l; k<=NP; ++k) 
+            {//--------------------------- >K
+                M8 = IP[j][k];
+                M8=abs(M8);
+                if (JA[M8]!=j && JB[M8]!=j) 
+                {
+                    continue;
+                }
+                if (JD[M8]<1) 
+                {
+                    M7=M7+1;
+                    M6=M8;
+                } //
+            }
+        }//K
+        if(M7==1)
+        {
+            M9=1;
+            JD[M6]=1;
         }
-        if (JD[M8]<1) {
-        M7=M7+1;
-        M6=M8;
-        } //
+        //} //       2
+        if(M9==1)
+        {
+            goto Again;
         }
-        >K
-        if(M7==l){
-        M9=l;
-        JD[M6]=1;
+
+        if(M7==2)
+        {
+            goto Num;
         }
-        } //
-        2
-        if(M9==l){goto Again;}
-        if(M7==2){goto Num;}
-        1 = 1 ;
+        I = 1 ;
         Sum:
-        ?
-        if(JD[I]<0){
-        f or (k=l ; k<=KN;++k) {//--------------- >d
-        IX[k]=0;
-        J E [k]=0;
-        } //
-        }d
-        J6=JA [I];
+        ;
+        if(JD[I]<0)
+        {
+
+            for(k=l ; k<=KN;++k)
+            {//--------------- >d
+                IX[k]=0;
+                JE[k]=0;
+            } //
+        }//d
+        
+        J6=JA[I];
         J8=JB[I];
         J7=2;
-        J G [J8]=1;
-        JD [I]=1;
+        JG[J8]=I;
+        JD[I]=1;
+
         goto Age;
-        }
+        //}
         Num:
-        1 = 1 + 1;
-        if(I<=KK){goto Sum;}
+        I+=1;
+
+        if(I<=KK)
+        {
+            goto Sum;
+        }
+
         M[KK+1]=NEL+1;
         KL=LNUM-KN-NTEP+1;
         M[KK+1]=NEL+1;
+
         printf ("\n---------stop ----------- =%d",ERR);
-        scanf(M%d",&ERR);
-        fprintf(filo,"\n KKs=%d KN=%d
-        KL=%d
-        NTEP=%d
-        fprintf(filo,"\n NXX=%d
-        NZX=%d",NXX,NZX){
-        KJ=%d",KK,KN,KL,NTEP,KJ) f
+        scanf("%d",&ERR);
+        fprintf(filo,"\n KKs=%d KN=%d   KL=%d    NTEP=%d KJ=%d",KK,KN,KL,NTEP,KJ);
+        fprintf(filo,"\n NXX=%d NZX=%d",NXX,NZX);
+        
         M[KK+1]=NEL+1;
-        if(LNUM I=KK){
-        fprintf(filo,"\nXXXXXXXXX[The Relation[P=J+L+T-1]IS NOT SATESFIED]XXXXXXXXX") ;
-        NXX=1;
+        if(LNUM !=KK)
+        {
+            fprintf(filo,"\nXXXXXXXXX[The Relation[P=J+L+T-1]IS NOT SATISFIED]XXXXXXXXX");
+            NXX=1;
         }
-        if(NXX!=0){
-        fprintf(filo,"\nXXXXXXXX[Error in the data]XXXXXXXXXXXXXX");
+        
+        if(NXX!=0)
+        {
+            fprintf(filo,"\nXXXXXXXX[Error in the data]XXXXXXXXXXXXXX");
         }
 }
 / * ============================================================================* /
-
-void combine4 (int MPL[],int M[],int NA[],int NB [] )
+void combine4 (int MPL[],int M[],int NA[],int NB[])
 {
       int j ,i ;
-      for(j=1;j<80;++j) 
+      for(j=1;j<80;++j)
       {
-        M P L [j]=0;
+        MPL[j]=0;
       }
       for(j=1;j<70;++j)
       {
