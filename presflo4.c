@@ -177,17 +177,17 @@ void main(void)
         break;
         } // -------------- j j
         } // --------------------------------- H
-        LNUM=LNUM+1 ;
-        M[LNUM]=NEL + 1 ;
-        fprintf(filo,"\n M[%d]=%d",LNUM,NEL+1) ;
-        for(jj=l;jj<=NZ;+ + jj) {
+        LNUM=LNUM+1;
+        M[LNUM]=NEL+1;
+        fprintf(filo,"\n M[%d]=%d",LNUM,NEL+1);
+        for(jj=l;jj<=NZ;++jj) {
         NEL=NEL+1;
-        fprintf(filo,"\n NEL=%dn,NEL) ;
-        MPL[NEL]=JF[jj] ;
-        fprintf(filo,"\nMPL[%d]=%d",NEL,M P L [NEL]);
-        printf ("\n-------- f l a g ----------- =%d",ERR);
+        fprintf(filo,"\n NEL=%dn",NEL);
+        MPL[NEL]=JF[jj];
+        fprintf(filo,"\nMPL[%d]=%d",NEL,MPL[NEL]);
+        printf ("\n-------- flag ----------- =%d",ERR);
         scanf("%d",&ERR);
-        } / / -------------------------------------- » j j
+        } // -------------------------------------- » j j
         NZ=0;
         if(J7==2){goto Again;}
         if (J7==l){
@@ -195,7 +195,7 @@ void main(void)
         }
         Gof:
         7
-        N8=abs(JG[J8] ) ;
+        N8=abs(JG[J8]);
         NZ=NZ+1;
         JF [NZ]=JG[J8];
         goto Fog;
@@ -216,19 +216,19 @@ void main(void)
         Again :
         M9 = 0 ;
         for(j=1;j<=KN;++j){ //------------------------------- > J
-        M7 = 0 ;
-        NP = M[j+1]-M[j] ;
+        M7 = 0;
+        NP = M[j+1]-M[j];
         printf("\n NP=%d",NP);
         for (k=l; k<=NP; ++k) {//--------------------------- >K
-        M8 = IP[j] [k] ;
+        M8 = IP[j][k];
         M8=abs(M8);
-        if ( JA [M8] ! = j Sc Sc JB [M8] ! = j ) {
+        if ( JA[M8]!=j Sc Sc JB [M8] ! = j ) {
         continue;
         }
-        if (JD[M8] <1) {
+        if (JD[M8]<1) {
         M7=M7+1;
         M6=M8;
-        } / /
+        } //
         }
         >K
         if(M7==l){
@@ -248,20 +248,20 @@ void main(void)
         J E [k]=0;
         } //
         }d
-        J6=JA [I] ;
+        J6=JA [I];
         J8=JB[I];
-        J7=2 ;
+        J7=2;
         J G [J8]=1;
         JD [I]=1;
         goto Age;
         }
         Num:
-        1 = 1 + 1 ;
+        1 = 1 + 1;
         if(I<=KK){goto Sum;}
         M[KK+1]=NEL+1;
         KL=LNUM-KN-NTEP+1;
         M[KK+1]=NEL+1;
-        printf ("\n---------s t o p ----------- =%d",ERR);
+        printf ("\n---------stop ----------- =%d",ERR);
         scanf(M%d",&ERR);
         fprintf(filo,"\n KKs=%d KN=%d
         KL=%d
