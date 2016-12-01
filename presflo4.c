@@ -8,55 +8,78 @@ void combine4 (int MPL[],int M[],int NA[],int NB[]);
 void main(void)
 {
         int KN,KP, NEL,KJ,KK,NTEP,LNUM;
-        int M[MAX_SIZ],J D [ M A X S I Z ] ,JG[MAXSIZ],IX[2 0],MPL[MAX_SIZ],JE[MAX_SIZ];
-        int N A [20] ,N B [20] ,JA[20] ,J B [20] ,IP [20] [13] ,JF[MAX_SIZ] ;
+        int M[MAX_SIZ],JD[MAX_SIZ],JG[MAX_SIZ],IX[20],MPL[MAX_SIZ],JE[MAX_SIZ];
+        int NA[20] ,NB[20],JA[20] ,JB[20] ,IP [20][13] ,JF[MAX_SIZ];
         int KL,J8,M1,NP,L8,L9,NZ,N8,j,k, I,jj ;
         int JPIN,NZX,NXX;
-        int M6=0;int M7=0;int M8=0;int M9=0;
-        int J7=l;int J6=0;
+        int M6=0;
+        int M7=0;
+        int M8=0;
+        int M9=0;
+        int J7=l;
+        int J6=0;
         int JXNIN,JXNJJN,JEM;
         int i,ii,JJJJ,JJJ1,jjj;
         int ERR=0;
-        char fnaml [20] , fnam2 [20] ;
+        char fnaml[20] , fnam2[20] ;
         / * =================================================================3==========*/
+        
         printf("Give file name for input\r\n");
         scanf("%s",fnaml);
-        i f ((fili=fopen(fnaml,"r+"))==NULL){
-        printf("Cannot open input f. %s",fnaml);
-        exit(0);
+        
+        if((fili=fopen(fnaml,"r+"))==NULL)
+        {
+                printf("Cannot open input f. %s",fnaml);
+                exit(0);
         }
+        
         printf("Give file name for output\r\n");
         scanf("%s",fnam2);
-        i f ((filo=fopen(fnam2,"at"))==NULL) {
-        printf("Cannot open output f. %s",fnam2);
-        exit(0);
+        
+        if((filo=fopen(fnam2,"at"))==NULL) 
+        {
+                printf("Cannot open output f. %s",fnam2);
+                exit(0);
         }
         /**/
+        
         fscanf{fili,"%d %d %d %d %d %d %d",KN,KP,NEL,KJ,KK,NTEP,LNUM);
         fscanf(fili,"%d %d %d",JPIN,NZX,NXX);
-        for(j =1;j <=KK;++j){
-        fscanf(fili,"%d %d %d",J A [j],J B [j],JD [j]);
+               
+        for(j=1;j<=KK;++j)
+        {
+                fscanf(fili,"%d %d %d",JA[j],JB[j],JD[j]);
         }
-        f or(j=l;j<=KN+l;++j){
-        fscanf(fili,"%d",M[j]);
-        >
-        f or(j=l;j<=KN;++j){
-        for(i=l;i<=3;++i){
-        fscanf(fili,"%d",IP[j][i]);
+               
+        for(j=l;j<=KN+l;++j)
+        {
+                fscanf(fili,"%d",M[j]);
         }
+               
+        for(j=l;j<=KN;++j)
+        {
+                for(i=l;i<=3;++i)
+                {
+                        fscanf(fili,"%d",IP[j][i]);
+                }
         }
+        
         KL=KP-NTEP+1;
-        /*
-        c a ll function */
+        /*call function */
+               
         combine4(MPL,M,NA,NB);
         JD[JPIN]=1;
         M1=KN;
-        J8=JA [JPIN] + JB [JPIN] ;
-        i f (JA[JPIN]>JB[JPIN]){
-        JG[J8] =-JPIN;
-        }else{
-        JG[J8]=JPIN;
-        >
+        J8=JA[JPIN] + JB[JPIN];
+               
+        if(JA[JPIN]>JB[JPIN])
+        {
+                JG[J8] =-JPIN;
+        }
+        else
+        {
+                JG[J8]=JPIN;
+        }
         Age:
         i
         JE [J8] =1;
@@ -64,53 +87,80 @@ void main(void)
         IX [1]=J8;
         /*
         */
-        for(k=l;k<=KN;++k){
+        for(k=l;k<=KN;++k)
+        {
         NZ = 0 ;
         L8=IX[k];
-        if(J7!=2 && L8==0){
+        if(J7!=2 && L8==0)
+        {
         fprintf(filo,"\n this system is disconnected");
         NXX=1;
         }
-        i f (J7o=2 && L8==0){
+                
+        if(J7o=2 && L8==0)
+        {
         break;
         }
         NP=M[L8+1]-M[L8];
-        f or(j=l;j<=NP;++j){
+                
+        for(j=l;j<=NP;++j)
+        {
         N8=IP[L8] [j] ;
         N8=abs(N8);
-        if(JA[N8]1=L8 && JB[N8]I=L8){
+        
+                if(JA[N8]1=L8 && JB[N8]I=L8)
+        {
         continue;
-        }else{
+        }
+        else
+        {
         J8=JA[N8]+JB[N8]-L8;
         }
-        if (JD[N8]= = 1) {
-        continue;
+        
+                if (JD[N8]= = 1) 
+        {
+                continue;
         }
-        if(abs(J8-J6)>0){goto Rod;}
+        
+                if(abs(J8-J6)>0)
+        {
+                goto Rod;
+        }
         NZ=NZ+1;
         M1=M1+1;
-        i f ((Ml-KN)<=NTEP){
-        NB[Ml-KN]=N8;
+        
+        if((Ml-KN)<=NTEP)
+        {
+                NB[Ml-KN]=N8;
         }
         JF [NZ] =N8;
-        if(J7I=2){
-        JD[N8]=1;
+                
+        if(J7I=2)
+        {
+                JD[N8]=1;
         }
-        if(JA[N8]!=L8){
-        JF[NZ]=-N8;
+        
+        if(JA[N8]!=L8)
+        {
+                JF[NZ]=-N8;
         }
         Fog:
-        7
-        J8=JA [N8] + JB [N8] -J8;
-        i f (J8I=J6){
-        goto Gof;
         }
-        if((Ml-KN)<=NTEP){
-        NA[Ml-KN]=N8;
-        fprintf(filo,"\n NA[%d-%d]=%d",M1,KN,N8);
+        J8=JA[N8] + JB[N8] -J8;
+        if(J8I=J6)
+        {
+                goto Gof;
         }
-        for (ii = 2 ; ii<=NZ ; + + ii){//------------------------------------- i i
-        JJJJ=ii-l7
+        
+        if((Ml-KN)<=NTEP)
+        {
+                NA[Ml-KN]=N8;
+                fprintf(filo,"\n NA[%d-%d]=%d",M1,KN,N8);
+        }
+        
+        for (ii = 2 ; ii<=NZ ; + + ii)
+        {//------------------------------------- i i
+        JJJJ=ii-l7;
         for(jj=l;jj<=JJJJ;++jj){
         JXNIN=JF[ii];
         JXNJJN=JF[j j];
@@ -233,17 +283,17 @@ void main(void)
 void combine4 (int MPL[],int M[],int NA[],int NB [] )
 {
       int j ,i ;
-      for(j=l;j<80;++j) 
+      for(j=1;j<80;++j) 
       {
-        M P L [j]=0 ?
+        M P L [j]=0;
       }
-      for(j =1;j<70;++j)
+      for(j=1;j<70;++j)
       {
         M[j+5] =0;
       }
-      for(i=l;i<20;++i)
+      for(i=1;i<20;++i)
       {
         NA[i]=0;
-        NB[i]=0 ;
+        NB[i]=0;
       }
 }
