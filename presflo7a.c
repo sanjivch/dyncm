@@ -49,7 +49,7 @@ int rline(int *list,int in55)
 		}
 		break;
 		}
-		case 1 -';
+		case '1';
 		{
 		for(j=0;j<(i-ij);j++) rln[j]=line[ij+j];
 		nl=atoi(rln);
@@ -367,7 +367,7 @@ void main(void)
 			x[ii]+=dx;
 			fun(f);
 			
-			for(i=0;i<nunk;i + + ) d[i] [j] = (f[i]-fl[i])/dx;
+			for(i=0;i<nunk;i++) d[i][j] = (f[i]-fl[i])/dx;
 			x[ii]-=dx;
 		}
 		
