@@ -20,14 +20,14 @@
 FILE *fili,*filo,*fill;
 
 const kl=10;
-void pip_data(int np,int JC[],int JA[],int JB[],double l[],double D[],double C[],double ml[],double fgn[],int AAA[]);
-void prv_input(int nprv,int LY[],int LZ[],double EMIN[],int MPL[]);
-void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int NPUMP,int NIPE);
+void pip_data(int numPipes,int JC[],int JA[],int JB[],double l[],double D[],double C[],double minorLoss[],double fixedGrNode[],int AAA[]);
+void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int MPL[]);
+void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int NIPE);
 
 void main(void)
 {
-	int nd,nj,np,fu,nprv,uu,ck;
-	double sw;//DDQ
+	int nd,numJunctions,numPipes,flowUnit,numPRV,kinViscosity,checkPipeConnection;
+	double spGravity;//DDQ
 	int LY[kl],LZ[kl],JC[kl],KCLO[kl];
 	double EMIN[kl];
 	int JD[kl];
@@ -37,15 +37,15 @@ void main(void)
 
 	double Q[kl],S[kl],V[kl];
 	int NIPE,Jl,J2,JPIN,NXX,a,g;
-	int NPUMP=0;
+	int numPumps=0;
 	int JA[kl],JB[kl];
 	int JJUN[kl];
 	double AA[kl],BB[kl],CC[kl],EE[kl],FF[kl];
 	double A3,A4,Al,A2,CQ,P;
 	int JPIP[kl],AAA[kl];
-	double l[kl],D[kl],C[kl],ml[kl],fgn[kl];
+	double l[kl],dia[kl],C[kl],minorLoss[kl],fixedGrNode[kl];
 	double DD[kl],GG[kl];
-	int NTEP=0,	NXX=0,ck=0;
+	int NTEP=0,	NXX=0,checkPipeConnection=0;
 	char fnam2[20],fnaml[20];
 	
 	printf("Give:inputfilename\r\n");
@@ -68,17 +68,17 @@ void main(void)
 	/*============================================================================*/
 	/*								variableoption:								  */
 	/*																			  */
-	/*							ck:Checkpipeconnectionjunction					  */
-	/*				fu:flowunite(0=CFS;1=GPM;2=MGD;3=SI(LITER/Sec)				  */
-	/*							np.-numberofpipes								  */
-	/*						nj:numberofjunction									  */
-	/*						nprv:numberofPRV									  */
-	/*				sw:specficGravity(0)waterwith3G=1.0							  */
-	/*			uu:kinematicviscosity(!=0Darcy-Weisbach							  */
+	/*							checkPipeConnection:Checkpipeconnectionjunction					  */
+	/*				flowUnit:flowunite(0=CFS;1=GPM;2=MGD;3=SI(LITER/Sec)				  */
+	/*							numPipes.-numberofpipes								  */
+	/*						numJunctions:numberofjunction									  */
+	/*						numPRV:numberofPRV									  */
+	/*				spGravity:specficGravity(0)waterwith3G=1.0							  */
+	/*			kinViscosity:kinematicviscosity(!=0Darcy-Weisbach							  */
 	/*																			  */
 	/*============================================================================*/
 	
-	fscanf(fili,"%d%d%d%d%d%d%lf%d",&ck,&fu,&np,&nj,&nprv,find,&sw,tuu);
+	fscanf(fili,"%d%d%d%d%d%d%lf%d",&checkPipeConnection,&flowUnit,&numPipes,&numJunctions,&numPRV,find,&spGravity,&kinViscosity);
 	
 		for(j=l;j<=20;++j)
 		{
@@ -96,42 +96,42 @@ void main(void)
 		}
 		
 		/*get pressure regrulator valve*/
-		if(nprv!=0)
+		if(numPRV!=0)
 		{
-			prv_input(nprv,LY,LZ,EMIN,MPL);
+			prv_input(numPRV,LY,LZ,EMIN,MPL);
 		}
 		
 		/*get pipe data*/
-		pip_data(np,JC,JA,JB,l,D,C,ml,fgn,AAA);
-		if(sw==0)
+		pip_data(numPipes,JC,JA,JB,l,D,C,minorLoss,fixedGrNode,AAA);
+		if(spGravity==0)
 		{
-			sw=1.0;
+			spGravity=1.0;
 		}
 		
-		if(fu==0)
+		if(flowUnit==0)
 		{//------------------------------------------------------------------------------------------------------------------1
 			fprintf(filo,"\nFlowRateIsExpressedInCfSAndPressureInPsig");
 			Al=4.73;
 			A2=0.02517;
-			A3=8.18/sw;
+			A3=8.18/spGravity;
 			A4=12.0;
 			CQ=1.0;
 		}
-		else if(fu==1)
+		else if(flowUnit==1)
 		{
 			fprintf(filo,"\nFlowRateIsExpessedIngpmAndPressureInpsig");
 			Al=4.73;
 			A2=0.02517;
-			A3=8.18/sw;
+			A3=8.18/spGravity;
 			A4=12.0;
 			CQ=448.86;
 		}
-		else if(fu==2)
+		else if(flowUnit==2)
 		{
 			fprintf(filo,"\nFlowRateIsExpressedInmgdAndPressureInpsig");
 			Al=4.73;
 			A2=0.02517;
-			A3=8.18/sw;
+			A3=8.18/spGravity;
 			CQ=0.646358;
 		}
 		else
@@ -139,12 +139,12 @@ void main(void)
 			fprintf(filo,"\nFlowRateIsExpressedInLiter/SecAndPrssureIN(KN/M*M)U);
 			Al=10.69;
 			A2=0.08265;
-			A3=0.10197/sw;
+			A3=0.10197/spGravity;
 			A4=100.0;
 			CQ=1000.0;
 		}
 		
-		if(uu==0)
+		if(kinViscosity==0)
 		{
 			P=1.852;
 		}
@@ -154,7 +154,7 @@ void main(void)
 		//printf("\nTHEDARCY-WEISHHEADLOSSEQUATIONISUSEDUU=");
 		}
 		
-		for(j=1;j<=np;++j)
+		for(j=1;j<=numPipes;++j)
 		{
 			NIPE=j;
 			fprintf(filo,"\nNIPE=%d",j);
@@ -199,11 +199,11 @@ void main(void)
 				}
 			if(AAA[j]!=0)
 			{
-				NPUMP=NPUMP+1;
-				pumpdata(AAA,AA,BB,CC,EE,FF,DD,GG,A3,CQ,NPUMP,NIPE);
+				numPumps=numPumps+1;
+				pumpdata(AAA,AA,BB,CC,EE,FF,DD,GG,A3,CQ,numPumps,NIPE);
 			}/*--------------------------------------------------------------------------------------------------------------------*/
 			
-			fprintf(filo,"\nnumberofpumpint hesystemNPUMP=%d",NPUMP);
+			fprintf(filo,"\nnumberofpumpint hesystemNPUMP=%d",numPumps);
 			
 			if(JA[j]!=0)
 			{
@@ -233,12 +233,12 @@ void main(void)
 				}
 			}
 			
-			D[j]=D[j]/A4;
-			Q[j]=PI*pow(D[j],2.0);
-			S[j]=Al*l[j3/pow(C[j],P)*pow(D[j],4.87);/*P=1.852*/
-			V[j]=A2*ml[j]/(pow(D[j],4.0));
+			dia[j]=dia[j]/A4;
+			Q[j]=PI*pow(dia[j],2.0);
+			S[j]=Al*l[j3/pow(C[j],P)*pow(dia[j],4.87);/*P=1.852*/
+			V[j]=A2*minorLoss[j]/(pow(dia[j],4.0));
 			
-			fprintf(filo,"\n%d%d%lf%lf%lf%lf11,NXX,JPIN,D[j],Q[j],S[j],V[j]);
+			fprintf(filo,"\n%d%d%lf%lf%lf%lf11,NXX,JPIN,dia[j],Q[j],S[j],V[j]);
 			
 		}/*----------------------------------------<<<<<<<<<landofthejloop*/
 }
@@ -256,11 +256,11 @@ void main(void)
 	/**/
 	/**/
 	/*============================================================================*/
-	void prv_input(int nprv,int LY[],int LZ[],double EMIN[],int MPL[])
+	void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int MPL[])
 	{
 		int j,Jl;
 		
-		for(j-1;j<=nprv;++j)
+		for(j-1;j<=numPRV;++j)
 		{
 			printf(11\nJUNCTIONNODEREPRESNETFIRSTPRVLY[%d]=%d",j,LY[j]);
 			scanf("%d",&LY[j]);
@@ -280,20 +280,20 @@ void main(void)
 	/*=====---------======================================------==================*/
 	/*Pipedata*/
 	/*functiondata:*/
-	/*np:numberofpipes*/
+	/*numPipes:numberofpipes*/
 	/*JA-JB:Codenumberconnectingthepipe*/
 	/*1:length*/
 	/*D:diameter*/
 	/*C-.HAZEN-WILLIAMSroughhness*/
-	/*ml:minorelosses*/
-	/*fgn:fixedgradenode*/
+	/*minorLoss:minorelosses*/
+	/*fixedGrNode:fixedgradenode*/
 	/*AAA:PUMPchar */
 	/*============================================================================*/
-	void pip_data(int np,int JC[],int JA[],int JB[],double l[],double D[],double C[],double ml[],double fgn[],int AAA[])
+	void pip_data(int numPipes,int JC[],int JA[],int JB[],double l[],double D[],double C[],double minorLoss[],double fixedGrNode[],int AAA[])
 	{
 		int j;
 		
-		for(j=1;j<=np;++j)
+		for(j=1;j<=numPipes;++j)
 		{
 			scanf("%d",&JC[j]);
 			fprintf(fili,"\n code2:indicate this pipe is closed code1: checkvalve JC[j]=%d",j,JC[j]);
@@ -306,21 +306,21 @@ void main(void)
 			scanf("%lf",&1[j]);
 			
 			fprintf(fili,"\nlinelengthinfeetR[%d]=%lf",j,l[j]);
-			scanf("%lf",&D[j]);
+			scanf("%lf",&dia[j]);
 			
-			fprintf(fili,"\ninsidediameterD[%d]=%lf11,j,D[j]);
+			fprintf(fili,"\ninsidediameterD[%d]=%lf11,j,dia[j]);
 			scanf("%lf",&C[j]);
 			
 			fprintf(fili,"\nHAZEN-WILLIAMESroughnessC[%d]=%lf",j,C[j]);
-			scanf("%lf",&ml[j]);
+			scanf("%lf",&minorLoss[j]);
 			
-			fprintf(fili,"\nsumofthemainorlossforthispipeWW[%d]=%lf",j,ml[j]);
+			fprintf(fili,"\nsumofthemainorlossforthispipeWW[%d]=%lf",j,minorLoss[j]);
 			scanf("%d",&AAA[j]);
 			
 			fprintf(fili,"\npumpchar (+,-)(uesfulepower,opertaingdata)AAA[%d]=%d",j,AAA[j]);
-			scanf("%lf",&fgn[j]);
+			scanf("%lf",&fixedGrNode[j]);
 			
-			fprintf(fili,"\nfixedgradenodeENGY[%d]=%lf",j,fgn[j]);
+			fprintf(fili,"\nfixedgradenodeENGY[%d]=%lf",j,fixedGrNode[j]);
 		}
 	}
 	
@@ -330,12 +330,12 @@ void main(void)
 	/*AAA:inputforeverypipeint henetworks*/
 	/*(0)thereisnopmupint hepipe*/
 	/*(number(-,+)thereisapmupint hepipe*/
-	/*npump=npump+l;*/
+	/*numPumps=numPumps+l;*/
 	/*if(jc[j]!=2)jc[j]=0*/
 	/*kc[j]=npumpistoindiacteifthereispumpint helineornot=0Nopmup*/
-	/*AA(NPUMP)=AAAUESFULPOWER*/
-	/*BB(NPUMP)=0*/
-	/*I=NPUMP*/
+	/*AA(numPumps)=AAAUESFULPOWER*/
+	/*BB(numPumps)=0*/
+	/*I=numPumps*/
 	/*--------------------------------------------------------------------------------------------------------------------*/
 	/*(+)UESFULEPOWER*/
 	/*(-)OPERATINGDATA(-1,-2)*/
@@ -344,7 +344,7 @@ void main(void)
 	/*AA[I=NPMUP]=X1*Y1+X2*Y2+X3*Y3/A3*3*CQ*/
 	/*x,y:(head,flowrate)*/
 	/*============================================================================*/
-	void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int NPUMP,int NIPE)
+	void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int NIPE)
 	{
 		double XI,Y1,X2,Y2,X3,Y3,S,D,T1;
 		int j,I;
@@ -353,10 +353,10 @@ void main(void)
 		
 		for(j=1;j<2;++j)
 		{
-			KC[j]=NPUMP;
-			AA[NPUMP]=double (AAA[j]);
-			BB[NPUMP]=0;
-			I=NPUMP;
+			KC[j]=numPumps;
+			AA[numPumps]=double (AAA[j]);
+			BB[numPumps]=0;
+			I=numPumps;
 				
 			if(AAA[j]<0)
 			{
