@@ -1,0 +1,7 @@
+ck:Checkpipeconnectionjunction
+	fu:flowunite(0=CFS;1=GPM;2=MGD;3=SI(LITER/Sec)
+	np.-numberofpipes								  
+	nj:numberofjunction									 
+	nprv:numberofPRV									 
+	sw:specficGravity(0)waterwith3G=1.0						
+	uu:kinematicviscosity(!=0Darcy-Weisbach
