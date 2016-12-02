@@ -20,9 +20,9 @@
 FILE *fili,*filo,*fill;
 
 const kl=10;
-void pip_data(int numPipes,int JC[],int JA[],int JB[],double l[],double D[],double C[],double minorLoss[],double fixedGrNode[],int AAA[]);
+void pip_data(int numPipes,int JC[],int JA[],int JB[],double lenPipe[],double dia[],double C[],double minorLoss[],double fixedGrNode[],int AAA[]);
 void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int MPL[]);
-void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int NIPE);
+void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int pipeUniNum);
 
 void main(void)
 {
@@ -36,16 +36,16 @@ void main(void)
 	int j;
 
 	double Q[kl],S[kl],V[kl];
-	int NIPE,Jl,J2,JPIN,NXX,a,g;
+	int pipeUniNum,Jl,J2,JPIN,NXX,a,g;
 	int numPumps=0;
 	int JA[kl],JB[kl];
 	int JJUN[kl];
 	double AA[kl],BB[kl],CC[kl],EE[kl],FF[kl];
 	double A3,A4,Al,A2,CQ,P;
 	int JPIP[kl],AAA[kl];
-	double l[kl],dia[kl],C[kl],minorLoss[kl],fixedGrNode[kl];
+	double lenPipe[kl],dia[kl],C[kl],minorLoss[kl],fixedGrNode[kl];
 	double DD[kl],GG[kl];
-	int NTEP=0,	NXX=0,checkPipeConnection=0;
+	int numFixedGrNode=0,	NXX=0,checkPipeConnection=0;
 	char fnam2[20],fnaml[20];
 	
 	printf("Give:inputfilename\r\n");
@@ -78,7 +78,7 @@ void main(void)
 	/*																			  */
 	/*============================================================================*/
 	
-	fscanf(fili,"%d%d%d%d%d%d%lf%d",&checkPipeConnection,&flowUnit,&numPipes,&numJunctions,&numPRV,find,&spGravity,&kinViscosity);
+	fscanf(fili,"%d%d%d%d%d%d%lf%d",&checkPipeConnection,&flowUnit,&numPipes,&numJunctions,&numPRV,&nd,&spGravity,&kinViscosity);
 	
 		for(j=l;j<=20;++j)
 		{
@@ -102,7 +102,7 @@ void main(void)
 		}
 		
 		/*get pipe data*/
-		pip_data(numPipes,JC,JA,JB,l,D,C,minorLoss,fixedGrNode,AAA);
+		pip_data(numPipes,JC,JA,JB,lenPipe,dia,C,minorLoss,fixedGrNode,AAA);
 		if(spGravity==0)
 		{
 			spGravity=1.0;
@@ -156,14 +156,14 @@ void main(void)
 		
 		for(j=1;j<=numPipes;++j)
 		{
-			NIPE=j;
+			pipeUniNum=j;
 			fprintf(filo,"\nNIPE=%d",j);
 			
-			KIP[NIPE]=j;
-			fprintf(filo,"\nKIP[%d]=%d",NIPE,j);
+			KIP[pipeUniNum]=j;
+			fprintf(filo,"\nKIP[%d]=%d",pipeUniNum,j);
 			
-			KPI[j]=NIPE;
-			fprintf(filo,"\nKPI[%d]=%d",j,NIPE);
+			KPI[j]=pipeUniNum;
+			fprintf(filo,"\nKPI[%d]=%d",j,pipeUniNum);
 			
 			J1=JA[j];
 			fprintf(filo,"\nJl=%d",Jl);
@@ -171,7 +171,7 @@ void main(void)
 			J2=JB[j];
 			fprintf(filo,l,\nJ2=%d",Jl);
 			
-			if(MPL[NIPE]==101)
+			if(MPL[pipeUniNum]==101)
 			{
 				goto Ntep;
 			}
@@ -179,28 +179,28 @@ void main(void)
 			{
 			Ntep:
 			;
-			NTEP=NTEP+1;
-			fprintf(filo,"\nNTEP=%d",NTEP);
+			numFixedGrNode=numFixedGrNode+1;
+			fprintf(filo,"\nNTEP=%d",numFixedGrNode);
 			
 			JD[j]=2;
-			if(NTEP==1)
+			if(numFixedGrNode==1)
 			{
 				JPIN=j;
 			}
-				if(MPL[NTEP]==101)
+				if(MPL[numFixedGrNode]==101)
 				{
-					JJUN[NTEP]=JB[j];
+					JJUN[numFixedGrNode]=JB[j];
 				}
 				else
 				{
-					JJUN[NTEP]=JA[j]+JB[j];
+					JJUN[numFixedGrNode]=JA[j]+JB[j];
 				}
-				JPIP[NTEP]=j;
+				JPIP[numFixedGrNode]=j;
 				}
 			if(AAA[j]!=0)
 			{
 				numPumps=numPumps+1;
-				pumpdata(AAA,AA,BB,CC,EE,FF,DD,GG,A3,CQ,numPumps,NIPE);
+				pumpdata(AAA,AA,BB,CC,EE,FF,DD,GG,A3,CQ,numPumps,pipeUniNum);
 			}/*--------------------------------------------------------------------------------------------------------------------*/
 			
 			fprintf(filo,"\nnumberofpumpint hesystemNPUMP=%d",numPumps);
@@ -221,7 +221,7 @@ void main(void)
 			{
 				if(nd==0&&KC[j]==0)
 				{
-					fprintf(filo,"\nThereIsaChekValveinLineNumber(%d)",NIPE);
+					fprintf(filo,"\nThereIsaChekValveinLineNumber(%d)",pipeUniNum);
 				}
 			}
 			if(JC[j]==2)
@@ -229,7 +229,7 @@ void main(void)
 				KCLO[j]=1;
 				if(nd==0)
 				{
-					printf("\nThelineNumber(%d)IsClosed",NIPE);
+					printf("\nThelineNumber(%d)IsClosed",pipeUniNum);
 				}
 			}
 			
@@ -289,7 +289,7 @@ void main(void)
 	/*fixedGrNode:fixedgradenode*/
 	/*AAA:PUMPchar */
 	/*============================================================================*/
-	void pip_data(int numPipes,int JC[],int JA[],int JB[],double l[],double D[],double C[],double minorLoss[],double fixedGrNode[],int AAA[])
+	void pip_data(int numPipes,int JC[],int JA[],int JB[],double lenPipe[],double dia[],double C[],double minorLoss[],double fixedGrNode[],int AAA[])
 	{
 		int j;
 		
@@ -344,7 +344,7 @@ void main(void)
 	/*AA[I=NPMUP]=X1*Y1+X2*Y2+X3*Y3/A3*3*CQ*/
 	/*x,y:(head,flowrate)*/
 	/*============================================================================*/
-	void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int NIPE)
+	void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int pipeUniNum)
 	{
 		double XI,Y1,X2,Y2,X3,Y3,S,D,T1;
 		int j,I;
@@ -376,7 +376,7 @@ void main(void)
 				
 				if(X1<X2||X2<X3)
 				{
-					printf("\nPUMPDATAFORLINE(%d)ISNOTSIUTABLE",NIPE);
+					printf("\nPUMPDATAFORLINE(%d)ISNOTSIUTABLE",pipeUniNum);
 					NXX=1;
 				}
 				
