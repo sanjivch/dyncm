@@ -1,3 +1,12 @@
+/*FLOW: FLOW RATE IN EACH PIPE * /
+/* HL: HEAD LOSSES IN THE PIPE * /
+/* PUMP: PUMP HEAD */
+/* ZINOR: MINOR LOSSES IN THE PIPE */
+/* VEL: VELOCITY */
+/* */
+/* ============================================================================*/
+
+
 
 /* ============================================================================*/
 #include <stdio.h>
