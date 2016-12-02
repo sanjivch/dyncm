@@ -11,13 +11,16 @@ G aussin E lim in ta tio n
 /*============================================================================*/
 #include <stdio.h>
 #include <stdlib.h>
-ttinclude <math.h>
-#define eps l.e-6
-ttdefine one 1.
-#define onn -1.
+#include <math.h>
+#define eps l.0e-6
+#define one 1.0
+#define onn -1.0
+
 FILE *fili,*filo;
 int gausel(int n,float **a,float *b,float *dd,float *error);
-void main(void){
+
+void main(void)
+{
 int n,i,j;
 float **a,*b,*dd,*error;
 char fnaml[20] ,fnam2[20] ;
@@ -28,9 +31,7 @@ error=(float*)calloc(n,sizeof(float));
 a=(float**)malloc(n*sizeof(float*)); / / a l l o c a t e s p o i n t e r s
 to
 rows
-for(i=0;i<n;i++) a[i]= (float*)malloc(n*sizeof(float));// a l l o c a t e s r o w s & p o i n t e r s
-to
-them
+for(i=0;i<n;i++) a[i]= (float*)malloc(n*sizeof(float));// a l l o c a t e s r o w s & p o i n t e r s to them
 /*
 printf("Give input file name\r\n");
 scanf("%s",fnaml);
@@ -77,24 +78,20 @@ in
 d eterm ining
 error.
 */
-for(i=0;i<n;i++){
-bo[i]=b [i] ;
-for(j=0;j<n;j++)
-ao [i] [j] =a [i] [j] ;
+for(i=0;i<n;i++)
+{
+  bo[i]=b[i] ;
+  for(j=0;j<n;j++)
+    ao[i][j] =a[i][j] ;
 }
-/* p i v o t s
-on l a r g e s t
-row & ke e p s
-track
-o f row no
-in
-1 [k];
-*/
-for(k=0;k<nl;k++){
+/* p i v o t s on l a r g e s t row & ke e p s track o f row no in 1 [k];*/
+for(k=0;k<nl;k++)
+{
 fac=fabs(a[k][k]);
 1 [k]=k;
 for(i=k+l;i<n;i++)
-if (fabs(a [i] [k])>fac){
+if (fabs(a [i] [k])>fac)
+{
 fac=fabs(a[i][k]);
 1 [k]=i;
 }
