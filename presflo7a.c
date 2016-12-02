@@ -437,7 +437,7 @@ void main(void)
 		fprintf(filo,"Node Data:\n");for(i = 0;i<54;i++)fprintf(filo,"-") ; fprintf (filo, "\n")
 	}
 
-	fprintf(filo," Node Demand ElevationHead Pressure HGL-elev.\n");");
+	fprintf(filo," Node Demand ElevationHead Pressure HGL-elev.\n");
 	for(i=0;i<54;i++)
 		fprintf(filo,"-");
 	fprintf(filo,"\r\n") ;
