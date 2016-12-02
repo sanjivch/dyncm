@@ -1,110 +1,122 @@
-/*============================================================================*/
-/*
-com puter a n a l y s i s
-of
-flo w
-and p r e s s u r e
-in p iep
-netw orks
-/*
-*/
-*/
-/*
-file-n a m e
-(o a l i d i n - o a l i d o )
-*/
-/*============================================================================*/
+
 #include <stdlib.h>
-ttinclude <stdio.h>
+#include <stdio.h>
 #include <math.h>
-ttinclude <conio.h>
+#include <conio.h>
+
 FILE *fili,*filo,*fill;
 const kl=40,k2=100,k3=5,k4=8;
-int nunk,np,nj,npump,nres,nj2,njp2,njp,nvar,jn[k2],nn[kl+1],ires[k4],ipump[k3] , 11 [k
-1],12[kl];
-float 1 [kl] ,x [k2] , hi [kl] , ap [k3] ,bp [k3] , cp [k3] , d [k2] [k2] , sf 1 = 8 . , vis7, rg2 , hwc;
+
+int nunk,np,nj,npump,nres,nj2,njp2,njp,nvar,jn[k2],nn[kl+1],ires[k4],ipump[k3] , II[k1],12[kl];
+float l[kl] ,x [k2] , hi [kl] , ap [k3] ,bp [k3] , cp [k3] , d [k2] [k2] , sf1 = 8.0 , vis7, rg2 , hwc;
 void solveq(int n, float a[] [k2], float b[],int itype, float &dd,int indx[]);
 /*============================================================================*/
-int rline(int *list,int in55){
-int i ,jj,ij,j ,ii,nl,nobl;
-n l= 0
-;//in p u t
-from
-the
-user
-char line[80],r l n [3],ch;
-if(in55) gets(line);
-else fgets(line,80,fill);
-for(i=0,ii = 0,jj=0,ij =0,nobl = 0 ;i<80;i++){
-ch=line[i];
-switch(ch) {
-case',1: case' 's case '/'¡case NULL:{
-if(nobl && ((ch==1 ')||(ch==NULL))){
-nobl++;
-if((nobl>10)||(ch==NULL)) return ii;
-ij =i+l;
-}
-else {
-f o r (j=0;j<(i-ij);j++)rln[j]=line[ij+j];
-if(jj){
-for(j=nl;j<=atoi(rln);j++) list[ii++]=j; jj=0;
-} else list[ii++]=atoi(rln);
-i f ((ch=='/1) ||(ch==NULL)) return ii;ij=i+l;
-if(ch==' 1) nobl=l;
-}
-break;
-}
-case 1 -';{
-for(j=0;j<(i-ij);j ++) r l n [j]=line[ij+j];
-nl=atoi(rln);
-j j=i;
-ij =i + l;
-break;
-}
-default:nobl=0;
-}
-}
-return ii;
-} // E n d o f f u n c t i o n r l i n e
+
+int rline(int *list,int in55)
+{
+	int i ,jj,ij,j ,ii,nl,nobl;
+	nl= 0;//input from the user
+	char line[80],rln[3],ch;
+
+	if(in55)
+		gets(line);
+	else
+		fgets(line,80,fill);
+
+	for(i=0,ii = 0,jj=0,ij =0,nobl = 0 ;i<80;i++)
+	{
+		ch=line[i];
+		switch(ch)
+		 {
+		case',1: case' 's case '/'¡case NULL:
+		{
+		if(nobl && ((ch==1 ')||(ch==NULL)))
+		{
+			nobl++;
+			if((nobl>10)||(ch==NULL)) return ii;
+			ij =i+l;
+		}
+		else
+		{
+			for (j=0;j<(i-ij);j++)rln[j]=line[ij+j];
+			if(jj)
+			{
+			for(j=nl;j<=atoi(rln);j++) list[ii++]=j; jj=0;
+			} 
+			else list[ii++]=atoi(rln);
+			if ((ch=='/1) ||(ch==NULL)) return ii;ij=i+l;
+			if(ch==' 1) nobl=l;
+		}
+		break;
+		}
+		case 1 -';
+		{
+		for(j=0;j<(i-ij);j++) rln[j]=line[ij+j];
+		nl=atoi(rln);
+		jj=i;
+		ij =i + l;
+		break;
+		}
+	default:nobl=0;
+		 }
+	}
+	
+	return ii;
+} // End of function rline
 /*============================================================================*/
-void fun(float *f) {
-int i,j,ii,id,iq;
-float qa,re,fr,sf;
-sf=1;
-for(i=0;icnj;i + + ){
-f[i] =x[i+nj];
-for (j=nn[i] ; j<nn[i + l] ; j++) {
-ii=abs(j n [j]);
-f [i]+ = (float) (jn [ j]/ii)*x[ii-l+nj2] ;
+void fun(float *f) 
+{
+	int i,j,ii,id,iq;
+	float qa,re,fr,sf;
+	sf=1;
+	
+	for(i=0;icnj;i++)
+	{
+		f[i] =x[i+nj];
+		for(j=nn[i]; j<nn[i+l]; j++)
+		{
+			ii=abs(jn[j]);
+			f[i]+ = (float) (jn[j]/ii)*x[ii-l+nj2] ;
+		}
+	}
+	for(i=0;i<np;i++) 
+	{ // / n p
+		id=i+njp;
+		iq=i+nj 2;
+		qa=fabs(x[ig]);
+		
+		if(x[i+njp2]>20.) 
+			hi[i]=hwc*l[i]*x[iq]*pow(qa,.85185185)/(pow(x[i+njp2],1.85185815)*pow(x[id],4.87037));
+		else 
+		{
+			re=qa/(vis7*x[id]);
+			if(re<21.8) 
+				fr=.4;
+			else 
+			{
+				if(re<286.)
+					fr=8.715223/re;
+				else 
+					do{
+						sfl=sf;
+						sf=l.14-2.*logl0(x[i+njp2]/x[id]+sf1/re);
+						} while(fabs(sf-sf1)>5.e-6);
+			}
+			fr=l./sf/sf;
+			hi[i]=rg2*fr*l[i]*x[iq]*qa/pow(x[id],5.);
+		}///else
+		if(ll[i]<0.) 
+			f [i+nj ] =x [abs (11 [i] ) -1+nvar] -hl[i] -x[12 [i] -1] ;
+		else
+			f [i+nj]=x[ll[i] -1] -hl[i] -x[12 [i] -1] ;
+	}/////n p
+	for(i=0;icnpump;i++)
+	{
+		ii=ipump[i]-1;f[ii+nj]+ = (ap[i]*x[ii+nj2]+bp[i])*x[ii+nj2]+cp[i];
+	}
 }
-}
-for(i=0;i<np;i++) { / / / n p
-id=i+njp;
-iq=i+nj 2;
-qa=fabs(x[ig]);
-if(x[i+njp2]>20.) hi[i]=hwc*l[i]*x[iq]*pow(qa,.85185185)/(pow(x[i+njp2],1.8518581
-5)*pow(x[id],4.87037));
-else {
-re=qa/(vis7*x[id]);
-if(re<21.8) fr=.4;
-else {if(re<286.)fr=8.715223/re;
-else do{
-sfl=sf;
-sf=l.14-2.*logl0(x[i+njp2]/x[id]+sf1/re);
-} while(fabs(sf-sf1)>5.e-6);
-}
-fr=l./sf/sf;
-hi[i]=rg2*fr*l[i]*x[iq]*qa/pow(x[id],5.);
-}///else
-if(ll[i]<0.) f [i+nj ] =x [abs (11 [i] ) -1+nvar] -hl[i] -x[12 [i] -1] ;
-else f [i+nj]=x[ll[i] -1] -hl[i] -x[12 [i] -1] ;
-}/////n p
-for(i=0;icnpump;i++){
-ii=ipump[i]-1;f[ii+nj]+ = (ap[i]*x[ii+nj2]+bp[i])*x[ii+nj2]+cp[i];
-}
-}
-// E n d o f f u n c t i o n f u n
-/ * ============================================================================*/
+// End of function fun
+/* ============================================================================*/
 void main(void)
 {
 int njpp,m,min, ii,nct, in2 , in5, in4, i, j ,nnj , nnj l,muk [6] ,list[kl] , indx [k2] , ipuk [k2] ;
@@ -176,30 +188,38 @@ No-line-elevation
 /*
 */
 /*============================================================================*/
-for(i=0;i<nres;i++){
-i f (in2) scanf ( "%d %f11, Sires [i] , &x [nvar+i] ) ;
-else fs c a n f(fili, "%d %f ", fcires[i] ,& x [nvar+i] );
+for(i=0;i<nres;i++)
+{
+if (in2) 
+	scanf ( "%d %f", Sires[i] , &x[nvar+i] ) ;
+else 
+	fscanf(fili, "%d %f ", fcires[i] ,&x[nvar+i]);
 /*============================================================================*/
 /* Reads pump data:
 /*
 No-line-(heaf-flow)
 */
-data
-*/
+//data */
 /*
 */
-/ * ============================================================================*/
-for(i=0;icnpump;i++){
-if(in2) scanf("%d %f %f %f %f %f %f",fcipump[i],&ql,&hl,&q2,&h2,&q3,&h3) ;
-else fscanf( f i l i , "%d %f %f %f %f %f %f",fiipump[i],&ql,&hl,&q2,fih2,&q3,&h3);
-hl/=( (ql-q2)* (ql-q3));
-h2 / = ( ( q2 - ql ) * ( q2 - q3 ) ) ;
-h3/=((q3-ql)* (q3-q2));
-ap[i]=hl+h2+h3;
-bp [i] =-(q2+q3)*hl-(ql+q3)*h2- (ql+q2)*h3 ;
-cp[i]=q2*q3*hl+ql*q3*h2+ql*q2*h3;
+/* ============================================================================*/
+for(i=0;icnpump;i++)
+{
+	if(in2)
+		scanf("%d %f %f %f %f %f %f",fcipump[i],&ql,&hl,&q2,&h2,&q3,&h3) ;
+	else 
+		fscanf( f i l i , "%d %f %f %f %f %f %f",fiipump[i],&ql,&hl,&q2,fih2,&q3,&h3);
+	
+	hl/=((ql-q2)*(ql-q3));
+	h2/= ((q2-ql)*(q2-q3));
+	h3/=((q3-ql)*(q3-q2));
+	ap[i]=hl+h2+h3;
+	bp[i]=-(q2+q3)*hl-(ql+q3)*h2-(ql+q2)*h3 ;
+	cp[i]=q2*q3*hl+ql*q3*h2+ql*q2*h3;
 }
-for(i=0;icnjpp;i++) nn[i]=0;
+
+for(i=0;i<njpp;i++)
+	nn[i]=0;
 /*============================================================================*/
 /* f u n c t i o n t o r e a d p i p e d a t a :
 */
@@ -210,33 +230,44 @@ N o d el, Node2, L en g th , D iam eter, roughness,
 & guess
 flo w ra te
 */
-*/
+//*/
 /*============================================================================*/
 printf ("---------------- ") ;
-for(i=0;i<np;i++){
-if(in2) scanf("%d %d %f %f %f %f" , all[i] , &12[i] , &1[i], & x [njp+i],&x[njp2 + i],&x[nj2 + i
-]) ;
-else fscanf(fili,"%d %d %f %f %f %f",&11[i],&12[i],&1[i], & x [njp+i], & x [njp2+i] ,&x [nj
-2+i]) ;
-i f (12[i]==0){
-printf(" 0 for reservoir must be 1st given node");
-exi t (0) ;
-}
+for(i=0;i<np;i++)
+{
+	if(in2)
+		scanf("%d %d %f %f %f %f" , all[i] , &l2[i] , &l[i], & x [njp+i],&x[njp2+i],&x[nj2+i]);
+	else 
+		fscanf(fili,"%d %d %f %f %f %f",&II[i],&l2[i],&l[i], & x [njp+i], & x [njp2+i] ,&x [nj2+i]) ;
+	
+	if(l2[i]==0)
+	{
+		printf(" 0 for reservoir must be 1st given node");
+		exit(0) ;
+	}
 }
 nnj = 0;
-for(i=0;i<np;i++){
-i f (11 [i]){
-nnjl=nn[11[i]]+1;
-for(j=nnj-1;j>=(nnj1-1);j --) jn[j+1]=jn[j];
-jn[nnj1-1]=i+l;
-for(j= 1 1 [i];jcnjpp;j + + ) nn [j]+=1;
-nnj=nn[njpp-1];
-} '
-nnjl=nn[12[i] ] +1;
-for (j=nnj -1; j>= (nnj 1-1) ;j--) jn[j+l]=jn[j];
-jn[nnj1-1]=-(i + 1) ;
-for(j = 1 2 [i];j cnjpp;j ++) nn[j]+=1;
-nnj=nn[njpp-1];
+for(i=0;i<np;i++)
+{
+	if (II[i])
+	{
+		nnjl=nn[11[i]]+1;
+		
+		for(j=nnj-1;j>=(nnj1-1);j--) 
+			jn[j+1]=jn[j];
+			jn[nnj1-1]=i+l;
+		for(j= 1 1 [i];jcnjpp;j++)
+			nn [j]+=1;
+			nnj=nn[njpp-1];
+	}// '
+	nnjl=nn[12[i]]+1;
+
+	for (j=nnj -1; j>= (nnj 1-1) ;j--) 
+		jn[j+l]=jn[j];
+		jn[nnj1-1]=-(i + 1) ;
+	for(j = 1 2 [i];j cnjpp;j ++) 
+		nn[j]+=1;
+		nnj=nn[njpp-1];
 }
 /*============================================================================*/
 /* R ea d s j u n c t i o n
@@ -349,131 +380,179 @@ fprintf(filo," No.
 #1
 #2
 Coef.\n");
-for(i=0;i<65;i++) f p r i n t f ( f i l o , ; fprintf(filo,"\n");
+for(i=0;i<65;i++) fprintf (filo, ; fprintf(filo,"\n");
 }
-for(i=0;icnp;i++){
-ii=ll[i] ;if (ii<0) ii=0;
-if(in4)printf("%4d %4d %4d %9.1f %9.3f %9.6f %9.3f % 9 .3f\r\n",i+1,ii,1 2 [i],1[i] ,x
-[njp+i], x[njp2+i],x[nj2+i],hi [i]) ; else
-fprintf(filo,"%4d %4d %4d %9.1f %9.3f %9.6f %9.3f % 9 .3f\n",i + 1,ii,1 2 [i] , 1 [i] ,x [njp
-+i] ,x[njp2+i],x[nj 2+i] ,hi[i]);}
-if(in4){
-printf("Node Data:\r\n");
-for(i=0;i<54;i++)printf("-");
-printf("\r\n");
-printf(" Node
-Demand Elevation
-Head Pressure HGL-elev.\r\n") ;
-for(i = 0 ;i<54;i + + )printf("-") ;
-printf("\r\n");
-} else {
-fprintf(filo,"Node Data:\n");for(i = 0;i<54;i++)fprintf(filo,"-") ; fprintf (filo, "\n")
-7
-fprintf(filo," Node
-Demand Elevation
-for(i=0;i<54;i++)fprintf(filo,"-");
-fprintf(filo,"\r\n") ;
-Head
-Pressure HGL-elev.\n");
-}
-for(i=0;icnj ? i+ + ){
-xx=x[i] -elev[i] ;
-if(in4)printf("%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\r\n",i+1,x[nj+i],elev[i] ,xx, conv
-*xx, x [i] ) ;
-else fprintf(filo,"%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\n",i + 1,x[nj+i],elev[i] ,xx,co
-nv*xx,x[i]);
-}
-}
-ttdefine TINY 1.0e-20;
-void dcompos (float a[] [k2],int n,int indx[], float d) {
-int i,imax,j,k;
-float aamax, drnn, sum, temp;
-float * w ;
-w = (float*) calloc (n,sizeof (float)) ; d=l. 0;
-for(i=0;i<n;i++) {
-aamax=0.0;
-for(j = 0;j<n;j++) if ((temp=fabs(a[i] [j])) > aamax) aamax=temp;
-if (aamax == 0.0) printf("Singular matrix in routine DCOMPOS\n");w [ i ] =1.0/aamax;
-}
-fo r (j =0;j<n;j+ + ) {
-for(i=0;i<j;i++) {
-sum=a[i][j];
-for(k=0;k<i;k++) sum -= a[i][k]*a[k][j];
-a[i] [j] =sum;
-}
-aamax=0.0;
-for(i=j;i<n;i++)
-sum=a[i][j];
+for(i=0;icnp;i++)
 {
-for(k=0;k<j;k++)sum -= a[i] [k]*a[k] [j];
-a[i] [j] =sum;
-if ( ( d u m = w [i] *fabs (sum)) >= aamax) {
-aamax=dum;imax=i;
+	ii=ll[i] ;if (ii<0) ii=0;
+	if(in4)
+		printf("%4d %4d %4d %9.1f %9.3f %9.6f %9.3f % 9 .3f\r\n",i+1,ii,1 2 [i],1[i] ,x	[njp+i], x[njp2+i],x[nj2+i],hi [i]);
+	else
+		fprintf(filo,"%4d %4d %4d %9.1f %9.3f %9.6f %9.3f % 9 .3f\n",i + 1,ii,1 2 [i] , 1 [i] ,x [njp+i] ,x[njp2+i],x[nj 2+i] ,hi[i]);
+}
+if(in4)
+{
+	printf("Node Data:\r\n");
+	for(i=0;i<54;i++)printf("-");
+	printf("\r\n");
+	printf(" Node Demand Elevation Head Pressure HGL-elev.\r\n") ;
+	for(i = 0 ;i<54;i + + )printf("-") ;
+	printf("\r\n");
+} 
+else 
+{
+	fprintf(filo,"Node Data:\n");for(i = 0;i<54;i++)fprintf(filo,"-") ; fprintf (filo, "\n")
+}
+
+fprintf(filo," Node Demand ElevationHead Pressure HGL-elev.\n");");
+for(i=0;i<54;i++)
+	fprintf(filo,"-");
+fprintf(filo,"\r\n") ;
+
+}
+for(i=0;i<nj ; i++)
+{
+	xx=x[i]-elev[i] ;
+	if(in4)
+		printf("%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\r\n",i+1,x[nj+i],elev[i] ,xx, conv*xx, x [i] ) ;
+	else 
+		fprintf(filo,"%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\n",i + 1,x[nj+i],elev[i] ,xx,conv*xx,x[i]);
 }
 }
-if (j != imax) {for(k=0;ken;k++) {
-dum=a[imax] tk] ;a [imax] [k]=a[j] [k] ;
-a [j] [k]=dum;
+#define TINY 1.0e-20;
+void dcompos (float a[][k2],int n,int indx[], float d) 
+{
+	int i,imax,j,k;
+	float aamax, drnn, sum, temp;
+	float * w ;
+	w = (float*) calloc (n,sizeof (float)) ; d=1.0;
+	for(i=0;i<n;i++) 
+	{
+		aamax=0.0;
+		for(j = 0;j<n;j++) 
+			if ((temp=fabs(a[i] [j])) > aamax) aamax=temp;
+
+		if (aamax == 0.0) 
+			printf("Singular matrix in routine DCOMPOS\n");
+			w[i] =1.0/aamax;
+	}
+	for (j =0;j<n;j++)
+	{
+		for(i=0;i<j;i++)
+		{
+			sum=a[i][j];
+			for(k=0;k<i;k++) 
+				sum -= a[i][k]*a[k][j];
+			a[i] [j] =sum;
+		}
+		aamax=0.0;
+		
+		for(i=j;i<n;i++)
+		sum=a[i][j];
+		{
+		for(k=0;k<j;k++)sum -= a[i] [k]*a[k] [j];
+		a[i] [j] =sum;
+		if ( ( d u m = w [i] *fabs (sum)) >= aamax) {
+		aamax=dum;imax=i;
+		}
+		}
+		if (j != imax) 
+		{
+				for(k=0;ken;k++) 
+				{
+					dum=a[imax] tk] ;a [imax] [k]=a[j] [k] ;
+					a [j] [k]=dum;
+				}
+			d = -(d);
+			w[imax] = w[j];
+		}
+		indx[j]=imax;
+		if (a[j] [j] == 0.0) 
+			a[j][j]=TINY;
+		if (j != n) 
+		{
+			dum=l.0/(a[j] [j]) ;
+			for(i=j+l;i<n;i++) a[i][j] *= dum;
+		}
+	}
+	free (w) ;
 }
-d = - (d) ; w [imax] = w [ j ] ;
-}
-indx[j]=imax;
-if (a[j] [j] == 0.0) a [j] [j]=TINY;
-if (j != n) {
-dum=l.0/(a[j] [j]) ;
-for(i=j+l;i<n;i++) a[i][j] *= dum;
->
-}
-free (w ) ;
->
-ttundef TINY
+
+#undef TINY
+
 void finsol(float a[][k2],int n,int indx[],float b[])
-{int i,ii,ip,j;
-float sum;
-ii=-l;
-for(i=0;i<n;i++) {
-ip=indx[i];
-sum=b[ip];
-b [ip] =b [i] ;
-if (ii != -1){
-for(j=ii;j<i;j++) sum -= a [i] [ j ] *b [ j ] ;
-} else if (sum!=0.) ii=i;
-b[i]=sum; }
-for(i=n-1;i>=0;i--) {
-sum=b[i];
-i f (i < (n-1)){
-f o r (j =i+l;j<n;j ++) sum -= a[i] [j]* b [j] ;
+{
+	int i,ii,ip,j;
+	float sum;
+	ii=-l;
+	for(i=0;i<n;i++) 
+	{
+		ip=indx[i];
+		sum=b[ip];
+		b [ip] =b [i] ;
+		if (ii!= -1)
+		{
+			for(j=ii;j<i;j++) sum -= a [i][j] *b [j] ;
+		} 
+		else if (sum!=0.) 
+			ii=i;
+		b[i]=sum; 
+	}
+	for(i=n-1;i>=0;i--) 
+	{
+		sum=b[i];
+		if (i < (n-1))
+		{
+			for (j =i+l;j<n;j ++) sum -= a[i][j]* b[j] ;
+		}
+		b[i] =sum/a[i][i];
+	}
 }
-b[i] =sum/a[i] [i];
-}
-}
-void solveq(int n, float a[] [k2] , float b[],int itype,float &dd,int indx[]){
-int detrm=0,eqsol=0,invsol=0,i ,j ; FILE *fil;
-i f ((itype==3)||(itype>4)) detrm=l;
-i f ((itype==l)||(itype==4)||(itype==6)) eqsol=l;
-i f ((itype==2)||(itype>3)) invsol=l;
-dcompos(a,n,indx,dd);
-if(detrm) for(i=0;i<n;i++) dd*=a[i][i];
-if(eqsol) finsol(a,n,indx,b);
-if(invsol){
-if(eqsol){
-printf("\nSolution Vector\n");
-for(i=0;i<n;i++){
-printf("%10,3f",b [i]);
-if (!(i%8)) printf("\n");
-}
-}
-i f ((fil=fopen("OMARIN","wt"))==NULL)
-printf("Data file OMARIN cannot be opened\n");
-for(j = 0;j <n;j + + ){
-for(i=0;i<n;i++) b[i]=0;
-b [j] =1;
-finsol(a,n,indx,b);
-for(i=0;i<n;i++) fprintf(fil,"%15.7f",b[i]);
-}
-rewind(fil);
-for(j=0;j<n;j++) for(i=0;icn;i++) fscanf(fil,"%15.7f",a[i][j]);
-fclose(fil); remove("TEMP.DAT");
->
-return;
+
+
+void solveq(int n, float a[][k2], float b[],int itype,float &dd,int indx[])
+{
+	int detrm=0,eqsol=0,invsol=0,i ,j ; 
+	FILE *fil;
+
+	if ((itype==3)||(itype>4)) detrm=l;
+	if ((itype==l)||(itype==4)||(itype==6)) eqsol=l;
+	if ((itype==2)||(itype>3)) invsol=l;
+
+	dcompos(a,n,indx,dd);
+
+	if(detrm) 
+		for(i=0;i<n;i++) dd*=a[i][i];
+	if(eqsol) 
+		finsol(a,n,indx,b);
+	if(invsol)
+	{
+		if(eqsol)
+		{
+			printf("\nSolution Vector\n");
+			for(i=0;i<n;i++)
+			{
+				printf("%10,3f",b [i]);
+				if (!(i%8)) 
+					printf("\n");
+			}
+		}
+		if ((fil=fopen("OMARIN","wt"))==NULL)
+		printf("Data file OMARIN cannot be opened\n");
+		for(j = 0;j <n;j++)
+		{
+			for(i=0;i<n;i++) b[i]=0;
+			b [j] =1;
+
+			finsol(a,n,indx,b);
+
+			for(i=0;i<n;i++) fprintf(fil,"%15.7f",b[i]);
+		}
+
+		rewind(fil);
+
+		for(j=0;j<n;j++) for(i=0;icn;i++) fscanf(fil,"%15.7f",a[i][j]);
+		fclose(fil); remove("TEMP.DAT");
+	}
+	return;
 }
