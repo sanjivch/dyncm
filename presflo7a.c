@@ -28,9 +28,9 @@ int rline(int *list,int in55)
 		ch=line[i];
 		switch(ch)
 		 {
-		case',1: case' 's case '/'¡case NULL:
+		case'1': case' 's case '/'¡case NULL:
 		{
-		if(nobl && ((ch==1 ')||(ch==NULL)))
+		if(nobl && ((ch=='1')||(ch==NULL)))
 		{
 			nobl++;
 			if((nobl>10)||(ch==NULL)) return ii;
@@ -44,8 +44,8 @@ int rline(int *list,int in55)
 			for(j=nl;j<=atoi(rln);j++) list[ii++]=j; jj=0;
 			} 
 			else list[ii++]=atoi(rln);
-			if ((ch=='/1) ||(ch==NULL)) return ii;ij=i+l;
-			if(ch==' 1) nobl=l;
+			if ((ch=='/') ||(ch==NULL)) return ii;ij=i+l;
+			if(ch==' ') nobl=l;
 		}
 		break;
 		}
@@ -94,7 +94,7 @@ void fun(float *f)
 				fr=.4;
 			else 
 			{
-				if(re<286.)
+				if(re<286.0)
 					fr=8.715223/re;
 				else 
 					do{
@@ -136,7 +136,7 @@ void main(void)
 	if(!in2)
 	{
 		printf("Give: input file name\r\n");
-		scanf ("%s11, fnaml) ;
+		scanf("%s", fnaml) ;
 		if((fili=fopen(fnaml,"r"))==NULL)
 		{
 			printf("File %s does not exist",fnaml);
@@ -194,7 +194,7 @@ void main(void)
 	nvar=njp2 +np;
 	njpp=nj+1;
 	rg2=.81056947/g;
-	sf 1=8 . ;
+	sf1=8.0 ;
 	
 	/*============================================================================*/
 	/* Reads reservoir data:
@@ -209,7 +209,7 @@ void main(void)
 	for(i=0;i<nres;i++)
 	{
 	if (in2) 
-		scanf ( "%d %f", Sires[i] , &x[nvar+i] ) ;
+		scanf("%d %f", Sires[i] , &x[nvar+i] ) ;
 	else 
 		fscanf(fili, "%d %f ", fcires[i] ,&x[nvar+i]);
 	/*============================================================================*/
@@ -226,7 +226,7 @@ void main(void)
 		if(in2)
 			scanf("%d %f %f %f %f %f %f",fcipump[i],&ql,&hl,&q2,&h2,&q3,&h3) ;
 		else 
-			fscanf( f i l i , "%d %f %f %f %f %f %f",fiipump[i],&ql,&hl,&q2,fih2,&q3,&h3);
+			fscanf(fili, "%d %f %f %f %f %f %f",fiipump[i],&ql,&hl,&q2,fih2,&q3,&h3);
 		
 		hl/=((ql-q2)*(ql-q3));
 		h2/= ((q2-ql)*(q2-q3));
@@ -254,9 +254,9 @@ void main(void)
 	for(i=0;i<np;i++)
 	{
 		if(in2)
-			scanf("%d %d %f %f %f %f" , all[i] , &l2[i] , &l[i], & x [njp+i],&x[njp2+i],&x[nj2+i]);
+			scanf("%d %d %f %f %f %f" , all[i] , &l2[i] , &l[i], &x[njp+i],&x[njp2+i],&x[nj2+i]);
 		else 
-			fscanf(fili,"%d %d %f %f %f %f",&II[i],&l2[i],&l[i], & x [njp+i], & x [njp2+i] ,&x [nj2+i]) ;
+			fscanf(fili,"%d %d %f %f %f %f",&II[i],&l2[i],&l[i], &x[njp+i], &x[njp2+i] ,&x[nj2+i]) ;
 		
 		if(l2[i]==0)
 		{
@@ -293,16 +293,16 @@ void main(void)
 	/*
 	data:
 	*/
-	Demands, H G L-ELEV-Elev
+	//Demands, H G L-ELEV-Elev
 	*/
 	*/
 	/*============================================================================*/
 	for(i=0;icnj;i++) if(in2) scanf("%f %f %f",&x[nj+i],& x[i],fielev[i]);
-	else fscanf(fili,"% f %f %f",&x[nj+i],&x[i],&elev[i]);
+	else fscanf(fili,"%f %f %f",&x[nj+i],&x[i],&elev[i]);
 	
 	for(i = 0;i<nres;i + + ) 11[ires [ i ] -1]=-(i + 1); nunk=nj+np; m=0;
 	do{
-	if(in5) printf(”%4d Unknowns must be given.Give no. of each of following\r\n",nunk);
+	if(in5) printf("%4d Unknowns must be given.Give no. of each of following\r\n",nunk);
 	
 	for(i=0;i<6;i++)
 	{
@@ -312,7 +312,7 @@ void main(void)
 			scanf("%d",&muk[i] ) ;
 		}
 		else 
-			fscanf(fili,*%d",&muk[i]);
+			fscanf(fili,"%d",&muk[i]);
 	}
 	}while ( (muk[0]+muk[1]+muk[2]+muk[3]+muk[4]+muk[5]!=nunk)&&(m++<5));
 	
@@ -339,7 +339,7 @@ void main(void)
 	for(i=0;icnp;i++)
 	{
 		for(j=0;j<nunk;j++) if(ipuk[j]==i+l+nj2) goto L28;
-		for (j=0;j<nj;j+ + ) i f ((ipuk[j]= = 1 1 [i]) || (ipuk[j]==12 [i])) goto L28;
+		for (j=0;j<nj;j+ + ) if ((ipuk[j]= = 1 1 [i]) || (ipuk[j]==12 [i])) goto L28;
 		if (11 [i]<0){xx=x[abs(11[i])-1+nvar] ;
 		ii = 0 ;
 		} else {xx=x[11[i]-1];ii = ll[i] ;
@@ -347,7 +347,7 @@ void main(void)
 		if ((xx-x[12[i]-1])*x[i-l+nj2]> -l.e-5) goto L28;
 		printf("Specified flowrate not consistent with H's in pipe %3d %3d %3d\r\n",i+1, ii,l2[i]);
 		printf("Hl= %8.2f H2= %8.2f Q= %8.2f must have HI > H2\r\n",xx,x[12[i]] ,x[i+nj2]);
-		printf("Should I reverse direction of this flow? (l=yes, 0=no\r\n)");
+		printf("Should I reverse direction of this flow? (l=yes, 0=no\r\n)\n");
 		scanf("%d",&ii);
 		
 		if(ii) x[i+nj2]=-x[i+nj2];
@@ -384,7 +384,7 @@ void main(void)
 	
 	if(npump)
 	{
-		if(in4)printf("Devices caused the following changes in heads\r\n");
+		if(in4) printf("Devices caused the following changes in heads\r\n");
 		else fprintf(filo,"Devices caused the following changes in heads\n");
 		
 		for(i=0;icnpump;i++)
@@ -407,7 +407,7 @@ void main(void)
 	} 
 	else 
 	{
-		fprintf(filo,"Pipe Data:\n");for(i = 0 ;i<65;i+ + )fprintf(filo,"-");fprintf(filo,"\n") ;
+		fprintf(filo,"Pipe Data:\n");for(i = 0 ;i<65;i++) fprintf(filo,"-"); fprintf(filo,"\n") ;
 		fprintf(filo,"Pipe Node Node Length	Diameter Roughness	Flowrate Headloss\n") ;
 		fprintf(filo," No.	#1	#2	Coef.\n");
 		
@@ -429,7 +429,7 @@ void main(void)
 		for(i=0;i<54;i++)printf("-");
 		printf("\r\n");
 		printf(" Node Demand Elevation Head Pressure HGL-elev.\r\n") ;
-		for(i = 0 ;i<54;i + + )printf("-") ;
+		for(i = 0 ;i<54;i++)printf("-") ;
 		printf("\r\n");
 	} 
 	else 
@@ -447,7 +447,7 @@ void main(void)
 	{
 		xx=x[i]-elev[i] ;
 		if(in4)
-			printf("%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\r\n",i+1,x[nj+i],elev[i] ,xx, conv*xx, x [i] ) ;
+			printf("%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\r\n",i+1,x[nj+i],elev[i] ,xx, conv*xx, x[i] ) ;
 		else 
 			fprintf(filo,"%5d %9.3f %9.3f %9.3f %9.3f % 9 .3f\n",i + 1,x[nj+i],elev[i] ,xx,conv*xx,x[i]);
 	}
