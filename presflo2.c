@@ -23,7 +23,7 @@
 #include <math.h>
 #include <stdlib.h>
 #define MAX_SIZ 50
-#define MAXPIP 40
+#define MAX_PIP 40
 #define MAX_PUM 40
 #define MAX_FIX 40
 #define MAX_PRV 40
@@ -37,12 +37,12 @@ void main(void)
 	int J99=30;
 	int LZ[MAXPRV],NUMJ[10];
 	int IP[MAX_PIP][13],M[MAX_PIP],JA[MAX_PIP],JB[MAX_PIP];
-	int MPL[MAX_SIZ],JX[MAX_SIZ],JIJ[MAX_SIZ],KIP[MAX_PIP],KPI[MAXPIP],JJI[MAX_PIP];
+	int MPL[MAX_SIZ],JX[MAX_SIZ],JIJ[MAX_SIZ],KIP[MAX_PIP],KPI[MAX_PIP],JJI[MAX_PIP];
 	int JJ,NEL,NOP,J1,J2,MMM,JMAX;
 	int KTEP;
 	int ERR=0;
 	int j,m,h,v,t,g,k,i;
-	double ENGY[MAX_PIP],EMIN[MAXSIZ];
+	double ENGY[MAX_PIP],EMIN[MAX_SIZ];
 	char fnaml[20],fnam2[20];
 	
 	/*============================================================================*/
