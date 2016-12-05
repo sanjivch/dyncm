@@ -15,9 +15,9 @@ IT NOT EQUAL TO ZERO
 FILE *fili,*filo;
 void main(void)
 {
-	int JA[MAX_SIZ] ,JB[MAX_SIZ] , JIJ[MAX_SIZ] , JJTJN[MAXJ3IZ] ,MPL[30] , JD[MAX_SIZ] ;
+	int JA[MAX_SIZ] ,JB[MAX_SIZ] , JIJ[MAX_SIZ] , JJTJN[MAX_SIZ] ,MPL[30] , JD[MAX_SIZ] ;
 	int M[MAX_SIZ] ,NEX[MAX_SIZ] ,NIX[MAX_SIZ] ,JPIP[MAX_SIZ] ,JJI[MAX_SIZ] ,NJO[MAX_SIZ] ;
-	int KCLO[MAX_SIZ],KPI[MAXSIZ];
+	int pipeStatus[MAX_SIZ],KPI[MAXSIZ];
 	double E[MAX_SIZ] ,B[MAX_SIZ] ,W9[MAX_SIZ] ,Y[MAX_SIZ] ,YY[MAX_SIZ] ,ENGY[MAX_SIZ] ;
 	double Q[MAX_SIZ];
 	int KK ,KN,KJ ,NEL,IPRINT,NXX ,NEXT,NTEP,N1 ,N2 ,N3 ,MBEG,MJJ,m ,JMAX,JMIN,II;
@@ -65,7 +65,7 @@ void main(void)
 
 	for(j=1;j<=KK;++j)
 	{
-		fscanf(fili,"%d %d %d %d",JA[j],JB[j],KPI[j] ,KCLO[j]);
+		fscanf(fili,"%d %d %d %d",JA[j],JB[j],KPI[j] ,pipeStatus[j]);
 	}
 	
 	for(i=1;i<=NTEP;++i)
@@ -283,7 +283,7 @@ void main(void)
 		JDIFF=JA[j] -JB[j];
 		if((JA[j]+JB[j])<=abs(JDIFF))
 		{
-			if(KCLO[j]!=1)
+			if(pipeStatus[j]!=1)
 			{
 				if(W9[j]!=9999.0)
 				{
