@@ -4,15 +4,15 @@
 
 void main()
 {
-	float a0,a1,a2,ratedspeed, nomspeed, speedfactor,head, flow;
+	float a0,a1,a2,ratedSpeed, nomSpeed, speedFactor,head, flow;
 	
-	scanf("%f %f",&ratedspeed, &nomspeed);
-	speedfactor=nomspeed/ratedspeed;
+	scanf("%f %f",&ratedSpeed, &nomSpeed);
+	speedFactor=nomSpeed/ratedSpeed;
 	
 	scanf("%f %f %f", &a0, &a1, &a2);
 	scanf("%f",&flow);
 	
-	head=a0*speedfactor*speedfactor+a1*speedfactor*flow+a2*flow*flow;
+	head=a0*speedFactor*speedFactor+a1*speedFactor*flow+a2*flow*flow;
 	
 	printf("Head:%f",head);
 	
