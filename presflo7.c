@@ -1,10 +1,3 @@
-/*============================================================================
-
-NQ=1 FLOW UNIT IN GPM
-SUPPRESS IN PUT DATA SUMMARY, IF
-IT NOT EQUAL TO ZERO
-
-*/
 /* ============================================================================*/
 
 #include <stdio.h>
@@ -18,7 +11,7 @@ void main(void)
 	int JA[MAX_SIZ] ,JB[MAX_SIZ] , JIJ[MAX_SIZ] , JJTJN[MAX_SIZ] ,MPL[30] , JD[MAX_SIZ] ;
 	int M[MAX_SIZ] ,NEX[MAX_SIZ] ,NIX[MAX_SIZ] ,JPIP[MAX_SIZ] ,JJI[MAX_SIZ] ,NJO[MAX_SIZ] ;
 	int pipeStatus[MAX_SIZ],KPI[MAXSIZ];
-	double E[MAX_SIZ] ,B[MAX_SIZ] ,W9[MAX_SIZ] ,Y[MAX_SIZ] ,YY[MAX_SIZ] ,ENGY[MAX_SIZ] ;
+	double E[MAX_SIZ] ,B[MAX_SIZ] ,W9[MAX_SIZ] ,Y[MAX_SIZ] ,headLossPipe[MAX_SIZ] ,ENGY[MAX_SIZ] ;
 	double Q[MAX_SIZ];
 	int KK ,KN,KJ ,NEL,IPRINT,NXX ,NEXT,NTEP,N1 ,N2 ,N3 ,MBEG,MJJ,m ,JMAX,JMIN,II;
 	double CQ,QEXTT,QEXT,PRES,SW,PMAX,PMIN,QEX,QIN,QOUT;
@@ -60,7 +53,7 @@ void main(void)
 	
 	for(j=1;j<=KK;++j)
 	{
-		fscanf(fili, "%lf %lf %1f",Q[j] ,ENGY[j],YY[j]);
+		fscanf(fili, "%lf %lf %1f",Q[j] ,ENGY[j],headLossPipe[j]);
 	}
 
 	for(j=1;j<=KK;++j)
@@ -86,7 +79,7 @@ void main(void)
 	/* NJOUT!=0 THERE ARE JUNCTION SELCTED TO SHOW A RESULT
 	*/
 	/* NJO[ ] ==1 HERE THE JUNCTION ONE IS SELCTED IN THE RESULT
-	/* YY[] = THE HEAD LOSS IN THE PIPE =HL-PUMP HEAD+MINOR LOSSES
+	/* headLossPipe[] = THE HEAD LOSS IN THE PIPE =HL-PUMP HEAD+MINOR LOSSES
 	/* THIS PROGRAM'S TO COMPUTE THE GRADE LINE AND THE PRESSURE AT EACH JUNCTION
 	/ * AND TO SHOW THE MAXIMMUM PRESSURE AND THE MINIMUM PRESSURE IN THE NETWORKS.
 	/ * SUMMARY OF INFLOW AND OUTFLOW FROM FIXED GRADE NODE.
@@ -104,11 +97,11 @@ void main(void)
 		J8=JIJ[m];
 		NEX[j]=J8;
 		J9=JPIPtj];
-		Y[J8]=ENGY[J9]+YY[J9];
+		Y[J8]=ENGY[J9]+headLossPipe[J9];
 		
 		if (JA[J9]== 0)
 		{
-			Y[J8]=ENGY[J9]-YY[J9];
+			Y[J8]=ENGY[J9]-headLossPipe[J9];
 		}
 	}
 	MO:
@@ -138,7 +131,7 @@ void main(void)
 					continue;
 				}
 				
-				Y[N3] =Y[N2] -YY[Nl];
+				Y[N3] =Y[N2] -headLossPipe[Nl];
 				NXX=NXX+1;
 				NIX[NXX]=N3;
 			}
@@ -153,7 +146,7 @@ void main(void)
 				continue;
 			}
 			
-			Y[N2] =Y[N3] +YY [Nl] ;
+			Y[N2] =Y[N3] +headLossPipe [Nl] ;
 			NXX=NXX+1;
 			NIX[NXX]=N2;
 		}
