@@ -1,12 +1,11 @@
-/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 /* demandJn[] -DEMAND OF THE JUNCTION */
 /* elevationJn[] -ELEVATION OF THE JUNCTION */
 /* NUMJ[] - NUMBER OF JUNCTION */
 /* arrNumJn[] -ARRAY CONTAINE THE NUMBER OF JUNCTION */
-/* arrPipeJn[] -ARRAY CONTINE THE NUMBER OF P IEP CONNECTED TO THE JUNCTI*/
+/* arrPipeJn[] -ARRAY CONTINE THE NUMBER OF PIPE CONNECTED TO THE JUNCTI*/
 /* checkData-NONZERO INTRY WILL INDICATED TO CHECKED PIPE CONNECTED J */
 /* showData NONZERO INTRY WOULDN'T SHOW DATA OF THE JUNCTION */
-
+/* */
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -24,8 +23,8 @@ void main()
 	int NPO[1O],NUMJ[10];
 	int JG[MAX_PIP],M[MAX_PIP],JA[MAX_PIP],JB[MAX_PIP];
 	int arrPipeJn[MAX_SIZ] ,JX[MAX_SIZ] ,arrNumJn[MAX_SIZ] ,KIP[MAX_PIP] ,KPI[MAX_PIP] ,JJI[MAX_PIP] ;
-	int numPipeAroundAllJn,NOP,junctionNo,J1,J2,MAXJ;
-	int MBEG,KJ,LNUM,KP,NAB,errorInputData,NXX,numPipeAroundEachJn,KTEP;
+	int numPipeAroundAllJn,numPipeAroundEachJn,junctionNo,J1,J2,MAXJ;
+	int MBEG,KJ,LNUM,KP,NAB,errorInputData,NXX,NUJ,KTEP;
 	int j,i,wl,l,k,tem,II;
 	double E[MAX_PIP],BI[MAX_PIP],B[MAX_PIP];
 	double demandJn[10] ,elevationJn [10] ;
@@ -34,7 +33,7 @@ void main()
 	
 	//========================================
 	printf("Give file name for input\r\n");
-	scanf ("%s11, fnaml) ;
+	scanf ("%s11, fnaml);
 	
 	if((fili=fopen(fnaml,"r+"))==NULL)
 	{
@@ -116,12 +115,12 @@ void main()
 			if(checkData!=0) 
 			{ 
 				// not equal to zero this means the data for the system must be checked
-				numPipeAroundEachJn=M[junctionNo+l]-M[junctionNo] ; // numPipeAroundEachJn THE NUMBER OF PIPE AROUND EACH JUNCTION
-				fprintf(filo,"\n+++++++numPipeAroundEachJn=%d",numPipeAroundEachJn);
+				NUJ=M[junctionNo+l]-M[junctionNo] ; // NUJ THE NUMBER OF PIPE AROUND EACH JUNCTION
+				fprintf(filo,"\n+++++++NUJ=%d",NUJ);
 				
 				for (i=1;i<=MAX_CPIP;++i) 
 				{//------->>i
-					if(i<=numPipeAroundEachJn)
+					if(i<=NUJ)
 					{
 						w1=M[junctionNo] ; // junctionNo NUMBER OF JUNCTION
 						NAB=arrPipeJn[w1+i-1] ; //arrPipeJn ARRAY CONTAINING THE NUMBER OF PIPE CONNECTING THE JUNCTION
@@ -167,8 +166,8 @@ void main()
 		NUMJ[l]=JJI[l];
 		MAXJ=M[l+1]-1;
 		MBEG=M[l];
-		NOP=M[l+1]-M[l] ;
-		fprintf(filo,"\n NOP=%d",NOP);
+		numPipeAroundEachJn=M[l+1]-M[l] ;
+		fprintf(filo,"\n numPipeAroundEachJn=%d",numPipeAroundEachJn);
 		
 		for(Jl=1;J1<=N0P;++J1)
 		{
@@ -181,7 +180,7 @@ void main()
 		if(showData<=0)
 		{//------------------------->>
 			//printf("\nNUM[%d]=%dGGGG[%d]=%lf",1,NUMJ[1],demandJn[1]);//E[l];
-			for(j=1;j<=NOP;++j)
+			for(j=1;j<=numPipeAroundEachJn;++j)
 			{//----------->>
 				J2=arrPipeJn[MBEG+j-1];
 				NPO[j]=abs(J2);
