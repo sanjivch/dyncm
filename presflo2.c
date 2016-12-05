@@ -3,7 +3,7 @@
 /* 																			  */
 /*functiontwo:																  */
 /*																			  */
-/*NTEP-NUMBEROFFIXEDGRADENODEintESYSTEM									  */
+/*numFixedGrNode-NUMBEROFFIXEDGRADENODEintESYSTEM									  */
 /*JJ-COUNTERTOCHECKTHENUMBEROFJUNCTION                                        */
 /*KN:NOFJunctionintheSystem                                                  */
 /*JA-JB:JUNCTIONCONNECTEDTHEPIPe                                              */
@@ -33,7 +33,7 @@ FILE *fili,*filo,*fill;
 
 void main(void)
 {
-	int KN,KK,NR,NTEP;
+	int KN,KK,NR,numFixedGrNode;
 	int J99=30;
 	int LZ[MAXPRV],NUMJ[10];
 	int IP[MAX_PIP][13],M[MAX_PIP],JA[MAX_PIP],JB[MAX_PIP];
@@ -64,7 +64,7 @@ void main(void)
 		exit(0);
 		
 		//======================================================
-		fscanf(fili,"%d%d%d%d",KN,KK,NR,NTEP);
+		fscanf(fili,"%d%d%d%d",KN,KK,NR,numFixedGrNode);
 		
 		for(j=l;j<=KK;++j)
 		{
@@ -81,7 +81,7 @@ void main(void)
 			M[j]=0;
 		}
 		
-		KTEP=NTEP-1;
+		KTEP=numFixedGrNode-1;
 		JJ=0;
 		NEL=0;
 	}
