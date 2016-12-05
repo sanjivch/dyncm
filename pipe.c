@@ -5,9 +5,16 @@
 
 int main()
 {
-	float diaInner,diaOuter,epsilon,pipeLength,flowArea;
+	float diaInner,diaOuter,epsilon,pipeLength,flowArea,flowVelocity,fluidDensity,massFlow, volFlow;
 	
 	//Flow Area calculation
-	flowArea=3.14*diaInner*diaInner/4;
+	flowArea=PI*diaInner*diaInner/4;
+	
+	volFlow=massFlow/fluidDensity;
+	
+	flowVelocity=volFlow/flowArea;
+	
+	resTime=pipeLength/flowVelocity;
+	
 	
 }
