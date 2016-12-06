@@ -28,7 +28,7 @@ void main(void)
 {
 	int nd,numJunctions,numPipes,flowUnit,numPRV,kinViscosity,checkPipeConnection;
 	double spGravity;//DDQ
-	int LY[kl],LZ[kl],JC[kl],KCLO[kl];
+	int LY[kl],LZ[kl],JC[kl],pipeStatus[kl];
 	double EMIN[kl];
 	int JD[kl];
 	int MPL[kl],KC[kl];
@@ -84,7 +84,7 @@ void main(void)
 		{
 			KPI[j]=0;
 			KC[j]=0;
-			KCLO[j]=0;
+			pipeStatus[j]=0;
 			JD[j]=0;
 		}
 		
@@ -226,7 +226,7 @@ void main(void)
 			}
 			if(JC[j]==2)
 			{
-				KCLO[j]=1;
+				pipeStatus[j]=1;
 				if(nd==0)
 				{
 					printf("\nThelineNumber(%d)IsClosed",pipeUniNum);
