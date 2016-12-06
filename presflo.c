@@ -21,7 +21,7 @@ FILE *fili,*filo,*fill;
 
 const kl=10;
 void pip_data(int numPipes,int JC[],int JA[],int JB[],double lenPipe[],double dia[],double C[],double minorLoss[],double fixedGrNode[],int AAA[]);
-void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int MPL[]);
+void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int arrPipeJn[]);
 void pumpdata(int AAA[],double AA[],double BB[],double CC[],double EE[],double FF[],double DD[],double GG[],double A3,double CQ,int numPumps,int pipeUniNum);
 
 void main(void)
@@ -31,12 +31,12 @@ void main(void)
 	int LY[kl],LZ[kl],JC[kl],pipeStatus[kl];
 	double EMIN[kl];
 	int JD[kl];
-	int MPL[kl],KC[kl];
+	int arrPipeJn[kl],KC[kl];
 	int KIP[kl],KPI[kl],JX[kl];
 	int j;
 
 	double Q[kl],S[kl],V[kl];
-	int pipeUniNum,Jl,J2,JPIN,NXX,a,g;
+	int pipeUniNum,J1,J2,JPIN,NXX,a,g;
 	int numPumps=0;
 	int JA[kl],JB[kl];
 	int JJUN[kl];
@@ -46,14 +46,14 @@ void main(void)
 	double lenPipe[kl],dia[kl],C[kl],minorLoss[kl],fixedGrNode[kl];
 	double DD[kl],GG[kl];
 	int numFixedGrNode=0,	NXX=0,checkPipeConnection=0;
-	char fnam2[20],fnaml[20];
+	char fnam2[20],fnam1[20];
 	
 	printf("Give:inputfilename\r\n");
-	scanf("%s",fnaml);
+	scanf("%s",fnam1);
 	
-	if((fili=fopen(fnaml,"w+"))==NULL)
+	if((fili=fopen(fnam1,"w+"))==NULL)
 	{
-		printf("File%sdoesnotexist",fnaml);
+		printf("File%sdoesnotexist",fnam1);
 		exit(0);
 	}
 	printf("Givefilenameforoutput\r\n");
@@ -80,7 +80,7 @@ void main(void)
 	
 	fscanf(fili,"%d%d%d%d%d%d%lf%d",&checkPipeConnection,&flowUnit,&numPipes,&numJunctions,&numPRV,&nd,&spGravity,&kinViscosity);
 	
-		for(j=l;j<=20;++j)
+		for(j=1;j<=20;++j)
 		{
 			KPI[j]=0;
 			KC[j]=0;
@@ -88,9 +88,9 @@ void main(void)
 			JD[j]=0;
 		}
 		
-		for(j=l;j<=20;++j)
+		for(j=1;j<=20;++j)
 		{
-			MPL[j]=0;
+			arrPipeJn[j]=0;
 			JX[j]=0;
 			KIP[j]=0;
 		}
@@ -98,7 +98,7 @@ void main(void)
 		/*get pressure regrulator valve*/
 		if(numPRV!=0)
 		{
-			prv_input(numPRV,LY,LZ,EMIN,MPL);
+			prv_input(numPRV,LY,LZ,EMIN,arrPipeJn);
 		}
 		
 		/*get pipe data*/
@@ -136,7 +136,7 @@ void main(void)
 		}
 		else
 		{
-			fprintf(filo,"\nFlowRateIsExpressedInLiter/SecAndPrssureIN(KN/M*M)U);
+			fprintf(filo,"\nFlow Rate Is Expressed In Liter/Sec And Prssure IN(KN/M*M)");
 			Al=10.69;
 			A2=0.08265;
 			A3=0.10197/spGravity;
@@ -166,12 +166,12 @@ void main(void)
 			fprintf(filo,"\nKPI[%d]=%d",j,pipeUniNum);
 			
 			J1=JA[j];
-			fprintf(filo,"\nJl=%d",Jl);
+			fprintf(filo,"\nJ1=%d",J1);
 			
 			J2=JB[j];
-			fprintf(filo,l,\nJ2=%d",Jl);
+			fprintf(filo,l,\nJ2=%d",J1);
 			
-			if(MPL[pipeUniNum]==101)
+			if(arrPipeJn[pipeUniNum]==101)
 			{
 				goto Ntep;
 			}
@@ -187,7 +187,7 @@ void main(void)
 			{
 				JPIN=j;
 			}
-				if(MPL[numFixedGrNode]==101)
+				if(arrPipeJn[numFixedGrNode]==101)
 				{
 					JJUN[numFixedGrNode]=JB[j];
 				}
@@ -252,17 +252,17 @@ void main(void)
 	/*LY[]:JUNCTIONNODEREPRESENTFIRSTPRV,*/
 	/*LZ[]:PIPENUMBERDOWNSTREAMFROMFIRSTPRV,*/
 	/*LY[]:GRADEWHICHTHEPRVSETTOMAint AIN,*/
-	/*MPL[]=101idicatedthatthispipecontainePRV*/
+	/*arrPipeJn[]=101idicatedthatthispipecontainePRV*/
 	/**/
 	/**/
 	/*============================================================================*/
-	void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int MPL[])
+	void prv_input(int numPRV,int LY[],int LZ[],double EMIN[],int arrPipeJn[])
 	{
-		int j,Jl;
+		int j,J1;
 		
-		for(j-1;j<=numPRV;++j)
+		for(j=1;j<=numPRV;++j)
 		{
-			printf(11\nJUNCTIONNODEREPRESNETFIRSTPRVLY[%d]=%d",j,LY[j]);
+			printf("\nJUNCTIONNODEREPRESNETFIRSTPRVLY[%d]=%d",j,LY[j]);
 			scanf("%d",&LY[j]);
 			
 			fprintf(fili,"\nPIPENUMBERDOWENSTREAMFROMFIRSTPRVLZ[%d]=",j);
@@ -272,7 +272,7 @@ void main(void)
 			scanf("%lf",fEMIN[j]);
 			
 			J1=LZ[j];
-			MPL[Jl]=101;//MPL[]=101 there is PRV in the pipe
+			arrPipeJn[J1]=101;//arrPipeJn[]=101 there is PRV in the pipe
 		}
 	}
 	
