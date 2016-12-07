@@ -6,7 +6,7 @@ void main()
 {
 
 	float processValue, setPoint, error, previousError, remSetPoint, controllerOut, epsilon=0.001, Kp, Ki, Kd, integral, derivative;//epsilon is the tolerance and is decided by the user
-	float time, simTime, deltaT=0.01;//deltaT to be decided by the user
+	float time, simTime=100.0, deltaT=0.01;//deltaT to be decided by the user
 	
 	
 	for(time=0.0; time=simTime; time+=deltaT)
