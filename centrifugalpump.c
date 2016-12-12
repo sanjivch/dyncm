@@ -4,7 +4,7 @@
 
 void main()
 {
-	float a0,a1,a2,ratedspeed, nomspeed, speedfactor,head, flow, powerRating;
+	float a0,a1,a2,ratedspeed, nomspeed, speedfactor,headDeveloped, flow, powerRating;
 	
 	scanf("%f %f",&ratedspeed, &nomspeed);
 	
