@@ -2,7 +2,7 @@
 
 ***Page under construction***
 
-### Dynamic Simulation 
+### Dynamic Simulation  
 
 This page contains the code snippets for few unit operations. There are many mathematical models yet to be written(or rewritten) for variety of unit operations. Currently, few mathematical models pipe, centrifugal pump, control valve, PID controller and atmospheric tank are available. 
 
@@ -14,5 +14,6 @@ Thank you for your patience and understanding and of course, following this page
 
 ### Author/ Contributor
 @sanjivch
-Sanjiv Ch
+
+[Sanjiv Ch](https://cmulate.wordpress.com) 
 
