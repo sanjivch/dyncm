@@ -5,7 +5,7 @@
 void main()
 {
 	int arraySize, num_PFObjects, num_nodes;
-	float a[10][10],h[10],q[10];
+	float pfArray[10][10],h[10],q[10];
 	float a12[10][10],a21[][];
 	float n;
 	float q_pipe[],k_pipe[],dE[];
@@ -51,6 +51,50 @@ void main()
 	
 	//Node equations
 	
+	//Diagonalization
+	for(k = 0; k< n; k++)
+	{
+		for(i = k+1; i<= n; i++)
+		{
+			pfArray[i][k] = pfArray[i][k] / pfArray[k][k];
+			
+			for(j = k+1; j<=n;j++)
+			{
+				pfArray[i][j] = pfArray[i][j] - pfArray[i][k] * pfArray[k][j];
+			}
+		}
+	}
+	
+	
+	// Forward substitution to solve Ld=b
+	x[0]=b[0];
+	for (i = 1; i < n; i++)
+	{
+		s=0;
+		for (j = 1; j<= i-1; j++)
+		{
+			s = s + pfArray[i][j] * x[j];
+		}
+		
+		x[i] = b[i] - s;
+	
+	}
+	
+	
+	
+	// back substitution to solve Ux=d
+	x[n] = x[n] / pfArray[n][n];
+	for(i = n-1;i>0 ; i--)
+	{
+		s=0;
+		for(j = i+1; j<=n; j++)
+		{
+			s = s + pfArray[i][j] * x[j];
+		
+		}
+	x[i] = (x[i] - s)/pfArray[i][i];
+	
+	}
 	
 	
 	
