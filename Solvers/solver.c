@@ -5,7 +5,7 @@
 void main()
 {
 	int arraySize, num_PFObjects, num_nodes;
-	float pfArray[10][10],h[10],q[10];
+	float a[10][10],h[10],q[10];
 	float a12[10][10],a21[][];
 	float n;
 	float q_pipe[],k_pipe[],dE[];
