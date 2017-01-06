@@ -21,5 +21,5 @@ Thank you for your patience and understanding and, of course, following this pag
 ### Author/ Contributor
 @sanjivch
 
-©[Sanjiv Ch](https://www.linkedin.com/in/sanjivch09) 2016-17
+©[Sanjiv Ch](https://www.linkedin.com/in/sanjivch09) 2016-17    [HOME](https://sanjivch.github.io/)
 
