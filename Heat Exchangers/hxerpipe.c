@@ -18,6 +18,10 @@ delT_Out =
 
 LMTD = (delT_In-delT_Out)/ln(delT_In/delT_Out)
 
+heatDuty = U * areaHX * LMTD ;
+
+T1Out = T1In + heatDuty/ (massFlow * heatCapacity);//heatDuty becomes negative for the other stream
+
 
 
 heatDuty = getHeatDuty();
