@@ -6,7 +6,7 @@
 
 This page contains the code snippets for few unit operations. There are many mathematical models yet to be written(or rewritten) for variety of unit operations. Currently, few mathematical models such as pipe, centrifugal pump, control valve, heat exchange pipe, PID controller and atmospheric tank are available. I'm working on Flash sub-routines as well.
 
-***This project is still a work in progress and needs massive amount of work.**
+***This project is still a work in progress and needs massive amount of work.***
 
 ### TODO
 
