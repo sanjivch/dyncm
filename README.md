@@ -1,3 +1,3 @@
 # dyncm
 
-Code snippets for unit operations
+***Dynamic Simulation project***
