@@ -12,7 +12,8 @@ This page contains the code snippets for few unit operations. There are many mat
 
 - Pressure Flow Solver (Engine)
 - Thermodynamic Solver (Engine)
-- GUI for the program
+- More unit operations...
+- GUI for the program 
 
 Updates to the this project will be very slow and intermittent. I'm experimenting with a lot of stuff and I'm not able to devote my entire free time to this project.
 
