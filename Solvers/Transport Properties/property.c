@@ -8,7 +8,7 @@ London (1985).
 */
 #include <stdio.h>
 #include <conio.h>
-#includ <math.h>
+#include <math.h>
 
 void main()
 {
