@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <conio.h>
-#includ <math.h>
+#include <math.h>
+#include "simsettings.h"
 
 void main()
 {
-	//Worksheet Solver
+	//Worksheet Solver- 
 	
 	simTime = getSimTime();//get sim time from the executive; to be read only once per simulation
 	
