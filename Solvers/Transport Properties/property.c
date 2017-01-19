@@ -17,4 +17,22 @@ void main()
 	
 	Psat= exp(A - B/(T+C));//T in K
 	
+	//Equation of State
+	//Ideal
+	P = n*R*T/V;
+
+	//Virial
+	P = (1+B)*R*T/V;
+	
+	//Cubic - Van der Waals (should not be used for liquid phase)
+	P = (R*T/(V-b))-(a/(V*V)));
+	
+	//Cubic - Redlich-Kwong (should not be used for liquid phase)
+	P = (R*T/(V-b))-(a/(sqrt(T)*V*(V+b))));
+	
+	//Cubic - Soave-Redlich-Kwong (suitable for hydrocarbon mixtures)
+	P = (R*T/(V-b))-(a/(V*(V+b))));
+	
+	//Cubic - Peng Robinson (improved liquid densities)
+	P = (R*T/(V-b))-(a/(V*(V+b) + b*(V-b))));
 }
