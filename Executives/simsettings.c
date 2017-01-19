@@ -7,6 +7,8 @@ void main()
 	int executionOrder;//0 = Left to Right; 1 =Process order
 	int simRunFlag;// 0 = Pause; 1= Run; 2= Stop
 	
+	simTime;//User defined- from GUI
+	
 	//Run a timer with a length of simTime. Increment with deltaT 
 	if(simRunFlag == 0)
 		//Pause the simulation. Should not update any values
