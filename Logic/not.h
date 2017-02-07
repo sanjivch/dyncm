@@ -1,20 +1,20 @@
 #ifndef NOT_H
 #define NOT_H
 
-#include "graphicelement.h"
+#include "unitoperation.h"//changed the name of the parent to UnitOperation from GraphicElement
 
-class Not : public GraphicElement {
+class Not : public UnitOperation {
 public:
   explicit Not( QGraphicsItem *parent );
   virtual ~Not( );
 
   /* GraphicElement interface */
 public:
-  virtual ElementType elementType( ) {
-    return( ElementType::NOT );
+  virtual UOType uoType( ) {//replaced element with UO or uo
+    return( UOType::NOT );
   }
-  virtual ElementGroup elementGroup( ) {
-    return( ElementGroup::GATE );
+  virtual UOGroup uoGroup( ) {
+    return( UOGroup::GATE );
   }
   void updateLogic( );
 };
