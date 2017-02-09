@@ -1,4 +1,4 @@
-#include "simulationcontroller.h"
+#include "simsettings.h"
 
 #include <QDebug>
 #include <limits>
@@ -9,19 +9,19 @@
 
 #include <QStack>
 
-SimulationController::SimulationController( Scene *scn ) : QObject( dynamic_cast< QObject* >( scn ) ), timer( this ) {
+SimSettings::SimSettings( Scene *scn ) : QObject( dynamic_cast< QObject* >( scn ) ), timer( this ) {
   scene = scn;
   timer.setInterval( GLOBALCLK );
-  connect( &timer, &QTimer::timeout, this, &SimulationController::update );
+  connect( &timer, &QTimer::timeout, this, &SimSettings::update );
 }
 
-SimulationController::~SimulationController( ) {
+SimSettings::~SimSettings( ) {
 
 }
 
-int SimulationController::calculatePriority( GraphicElement *elm,
-                                             QMap< GraphicElement*, bool > &beingvisited,
-                                             QMap< GraphicElement*, int > &priority ) {
+int SimSettings::calculatePriority( UnitOperation *elm,
+                                             QMap< UnitOperation*, bool > &beingvisited,
+                                             QMap< UnitOperation*, int > &priority ) {
   if( !elm ) {
     return( 0 );
   }
@@ -38,7 +38,7 @@ int SimulationController::calculatePriority( GraphicElement *elm,
     for( QNEConnection *conn : port->connections( ) ) {
       QNEPort *sucessor = conn->otherPort( port );
       if( sucessor ) {
-        max = qMax( calculatePriority( sucessor->graphicElement( ), beingvisited, priority ), max );
+        max = qMax( calculatePriority( sucessor->unitOperation( ), beingvisited, priority ), max );
       }
     }
   }
@@ -48,23 +48,23 @@ int SimulationController::calculatePriority( GraphicElement *elm,
   return( p );
 }
 
-QVector< GraphicElement* > SimulationController::sortElements( QVector< GraphicElement* > elms ) {
-  QMap< GraphicElement*, bool > beingvisited;
-  QMap< GraphicElement*, int > priority;
-  for( GraphicElement *elm : elms ) {
+QVector< UnitOperation* > SimSettings::sortElements( QVector< UnitOperation* > elms ) {
+  QMap< UnitOperation*, bool > beingvisited;
+  QMap< UnitOperation*, int > priority;
+  for( UnitOperation *elm : elms ) {
     calculatePriority( elm, beingvisited, priority );
   }
-  std::sort( elms.begin( ), elms.end( ), [ priority ]( GraphicElement *e1, GraphicElement *e2 ) {
+  std::sort( elms.begin( ), elms.end( ), [ priority ]( UnitOperation *e1, UnitOperation *e2 ) {
     return( priority[ e2 ] < priority[ e1 ] );
   } );
 
   return( elms );
 }
 
-void SimulationController::update( ) {
-  QVector< GraphicElement* > elements = scene->getElements( );
+void SimSettings::update( ) {
+  QVector< UnitOperation* > elements = scene->getElements( );
   if( Clock::reset ) {
-    for( GraphicElement *elm : elements ) {
+    for( UnitOperation *elm : elements ) {
       if( elm->elementType( ) == ElementType::CLOCK ) {
         Clock *clk = dynamic_cast< Clock* >( elm );
         if( clk ) {
@@ -77,23 +77,23 @@ void SimulationController::update( ) {
   if( elements.isEmpty( ) ) {
     return;
   }
-  for( GraphicElement *elm : sortedElements ) {
+  for( UnitOperation *elm : sortedElements ) {
     elm->updateLogic( );
   }
 }
 
-void SimulationController::stop( ) {
+void SimSettings::stop( ) {
   timer.stop( );
 }
 
-void SimulationController::start( ) {
+void SimSettings::start( ) {
   timer.start( );
   Clock::reset = true;
   reSortElms();
 }
 
-void SimulationController::reSortElms( ) {
+void SimSettings::reSortElms( ) {
   COMMENT( "Re-sorting elements", 0 );
-  QVector< GraphicElement* > elements = scene->getElements( );
+  QVector< UnitOperation* > elements = scene->getElements( );
   sortedElements = sortElements( elements );
 }
