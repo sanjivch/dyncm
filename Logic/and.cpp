@@ -1,6 +1,6 @@
 #include "and.h"
 
-And::And(QGraphicsItem * parent) : GraphicElement(2,8,1,1,parent) {
+And::And(QGraphicsItem * parent) : UnitOperation(2,8,1,1,parent) {
   setOutputsOnTop(true);
   setPixmap(":/basic/and.png");
   updatePorts();
