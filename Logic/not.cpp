@@ -1,6 +1,6 @@
 #include "not.h"
 
-Not::Not(QGraphicsItem *parent) : GraphicElement(1,1,1,1,parent) {
+Not::Not(QGraphicsItem *parent) : UnitOperation(1,1,1,1,parent) {
   setOutputsOnTop(true);
   setPixmap( ":/basic/not.png" );
   updatePorts();
