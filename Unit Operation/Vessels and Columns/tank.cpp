@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #define PI 3.1415
 
 using namespace std;
@@ -11,6 +12,7 @@ int main()
 		double botPressure;
 		int tankShape, tankType;//tankType - 0=Open to atmosphere; 1=Pressurised; 
 		double tim, simTime=10000.0,deltaT=0.1, dHeight; //simTime, deltaT should be user defined
+		double dEnthalpy, enthalpyIn=500,enthalpyOut=0.0, heatAdded=10.0;//enthalpyOut should initial be the reference temperature's corresponding enthalpy
 		
 		//GUI level calculation
 		//Find outer dia 
@@ -36,6 +38,7 @@ int main()
 		cout << "Fluid density";
 		cin >> fluidDensity;
 		
+		cout <<endl;
 		for(tim=0.0; tim<=simTime; tim+=deltaT)//this "for" loop should go. the global sim controller should take care of sim time 
 		{
 			//massIn= getFlowIn(BN);
@@ -53,9 +56,13 @@ int main()
 			//botPressure should be based on tankType- Units in KPa
 			//add the opPressure to rho*g*h term- opPressure is the pressure at the top of the tank- depends on tankType
 			botPressure=opPressure + (opHeight*fluidDensity*0.00981);//9.81*0.001 is changed to 0.00981
-			cout << "Pressure: " << botPressure <<endl;
+			cout << "Pressure: " << botPressure <<" kPa   ";
+			//Energy balance:
+			dEnthalpy = (abs(massIn-massOut)*enthalpyIn+heatAdded)*deltaT;
+			enthalpyOut+= dEnthalpy;
+			cout << " Temperature: " << 25.0+(enthalpyOut/(massOut*4.187)) << endl;//25 is the reference temperature
+			
 		}
 			
 
 }
-
