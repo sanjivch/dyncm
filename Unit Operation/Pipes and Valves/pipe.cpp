@@ -2,7 +2,7 @@
 #include <math.h>
 #define PI 3.1415
 
-void main()
+int main()
 {
 	double diaInner,diaOuter,epsilon,pipeLength, fitResistance, K1, Kinf, NRe;
 	double viscosity, refViscosity, opTemp,refTemp;
